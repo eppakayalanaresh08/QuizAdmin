@@ -1,0 +1,193 @@
+
+
+.bg-container-main{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.inputext{
+    display: flex;
+    flex-direction: column;
+}
+
+.navElement{
+    width:400px;
+}
+
+.Quizheading{
+    font-size: 30px;;
+    text-align: center;
+    font-weight: 600;
+    color: #73879C;
+}
+
+
+
+.QuestionContainer{
+    /* margin-left: 300px;; */
+    display: flex;
+    flex-direction: column;
+    /* width:850px; */
+}
+
+
+
+.selectElement{
+    width:630px;
+    border-color: rgb(176 190 197);
+    border-radius: 4px;
+    padding: 10px;
+
+    border-width: 1.5px;
+    border-style: solid;
+}
+
+.nameQuestions{
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.textareaElement{
+    border-color: rgb(176 190 197);
+    border-width: 1.8px;
+    border-style: solid;
+    margin-bottom: 10px;;
+    width:630px;
+
+
+}
+
+.nameElementQuestions{
+    color:#73879C;
+    font-weight: 500;
+    margin-bottom: 2px;
+    margin-top: 10px;;
+}
+
+.textInputnameImage{
+  
+    border-color: rgb(176 190 197);
+    border-radius: 4px;
+    padding: 10px;
+
+    border-width: 1.5px;
+    border-style: solid;
+    width:625px;
+
+}
+
+.textinputElement{
+    border-color: rgb(176 190 197);
+    width:300px;
+
+    border-width: 1.5px;
+    border-style: solid;
+    padding: 3px;
+}
+
+.noneSelected{
+    background-color: #ffffff;
+    min-width:120px;
+}
+
+.selectedbuttonQuestions{
+    background-color: #73879C;
+    color:#ffffff;
+    width:180px
+}
+
+.selectedbutton{
+    background-color: #73879C;
+    color:#ffffff;
+    min-width:120px;
+
+    /* padding: 5px;; */
+}
+
+.buttonContainer{
+    border:1px solid #73879C;
+    width:362px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+   
+}
+
+.buttontrue{
+    /* border:1px solid #73879C; */
+    border-left:1px solid #73879C;
+    border-right:1px solid #73879C;
+
+
+ 
+}
+
+.containerOptions{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  
+}
+
+
+.eachOption{
+    margin: 10px;
+}
+
+
+.nameoptionElement{
+   font-weight: 600;
+}
+
+.conatinerQuestionType{
+    width:100px;
+}
+
+.importQuestions{
+    display: flex;
+    flex-direction: column;
+}
+
+.importQsheading{
+   margin-top: 40px;
+   font-weight: 500;
+}
+
+.csvQuestions{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color:#73879C;
+
+}
+
+.buttoncontainerQuiz{
+    margin-top: 20px;
+}
+.container-right-Element{
+    display: flex;
+    flex-direction: row;
+
+
+
+
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    /* margin-top: 20px;
+    margin-right: 20px; */
+    margin: 30px;
+
+}
+
+.imagecategory{
+    height:5px;
+    width: 5px;
+}

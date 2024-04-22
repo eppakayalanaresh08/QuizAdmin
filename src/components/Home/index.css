@@ -1,0 +1,37 @@
+.textwelcome{
+    text-align: center;
+}
+.container-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:80%;
+    margin-left: 20%;
+    margin-top: auto;
+    padding:20px;
+}
+
+.eachCardContainer{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.numbertext{
+    color:'';
+    font-weight: 600;
+}
+
+.eachcard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+ 
+    height:120px;
+    width:260px
+}
