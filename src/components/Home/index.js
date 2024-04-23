@@ -74,6 +74,7 @@ const HomePage = () => {
                     <span className="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
                 </div>
             </div> */}
+            
             <div class='container-card'>
                 <p className="text-center ">Welcome to Quiz - Admin Panel</p>
 
