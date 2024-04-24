@@ -4,7 +4,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom';
 // import Quiz from '../assets/Quiz.jpeg'
 
-import Quiz from './LoginAssets/Quiz.jpeg'
+import Quiz from './LoginAssets/FreakLogo.png'
 
 
 import './index.css'
@@ -20,7 +20,7 @@ function Login() {
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
-          className="mx-auto h-14  w-auto"
+          className="mx-auto h-20  w-auto"
           src={Quiz}
           alt="Your Company"
         />

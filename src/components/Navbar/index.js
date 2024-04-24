@@ -34,6 +34,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 
+import Quiz from '../Login/LoginAssets/FreakLogo.png'
+
 import './index.css';
 
 const Navbar = () => {
@@ -70,8 +72,9 @@ const Navbar = () => {
       <div className={`sidebar ${sidebarOpen ? "" : "hidden"} fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900`}>
         <div className="text-gray-100 text-xl">
           <div className="p-2.5 mt-1 flex items-center">
-            <i className="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
-            <h1 className="font-bold text-gray-200 text-[15px] ml-3">Quiz Admin Panel</h1>
+            {/* <i className="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i> */}
+            <img src={Quiz} alt='' className="imageElementQuiz"/>
+            <h1 className="font-bold text-gray-200 text-[15px] ml-3">Freak Admin Panel</h1>
             <i className="bi bi-x cursor-pointer ml-28 lg:hidden" onClick={toggleSidebar}></i>
           </div>
           <div className="my-2 bg-gray-600 h-[1px]"></div>
@@ -96,7 +99,7 @@ const Navbar = () => {
         </div>
         <div className={`text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold ${Employeeopen ? "" : "hidden"}`} id="submenu">
           {/* leaderboard */}
-          <Link to='/leaderboard'>
+          <Link to='/addEmployee'>
             <h1 className="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">Add Employee</h1>
           </Link>
 

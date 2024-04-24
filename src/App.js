@@ -8,6 +8,7 @@ import Users from './components/Users';
 import QuestionCreate from './components/Question';
 import MainCategory from './components/MainCategory';
 import ContestsPage from './components/Contests';
+import AddEmployee from './components/AddEmployee';
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
           <Route exact path="/Questions" component={QuestionCreate}/>
           <Route exact path="/MainCategory" component={MainCategory}/>
           <Route exact path="/Contests" component={ContestsPage}/>
+          <Route exact path='/addEmployee' component={AddEmployee}/>
 
-
+          {/* <Route exact path="addEmployee"component={add}/> */}
           {/* ContestsPage */}
     </BrowserRouter>
   );

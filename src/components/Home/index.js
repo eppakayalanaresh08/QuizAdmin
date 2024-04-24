@@ -76,7 +76,7 @@ const HomePage = () => {
             </div> */}
             
             <div class='container-card'>
-                <p className="text-center ">Welcome to Quiz - Admin Panel</p>
+                <p className="text-center ">Welcome to Freak - Admin Panel</p>
 
 
 
