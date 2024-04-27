@@ -37,7 +37,7 @@ const Navbar = () => {
    console.log(toggleSubmenu)
 
   return (
-    <div>
+    <div className="main-bar-container">
       <div className={`sidebar ${sidebarOpen ? "" : "hidden"} fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900`}>
         <div className="text-gray-100 text-xl">
           <div className="p-2.5 mt-1 flex items-center">
