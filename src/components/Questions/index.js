@@ -5,8 +5,8 @@ import './index.css'
 import { ColorCode } from '../ColorCode';
 
 const items = [
-    { id: 101, selectedOption: 'Trigonometric',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' },
-    { id: 102, selectedOption: 'Business' ,image:'https://quizdemo.wrteam.in/images/category/1676895620.2716.png'},
+    { id: 101, selectedOption: 'Sports',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' },
+    { id: 102, selectedOption: 'Entertainment' ,image:'https://quizdemo.wrteam.in/images/category/1676895620.2716.png'},
     { id: 103, selectedOption: 'Entertainment',image:'https://quizdemo.wrteam.in/images/category/1676884941.9042.png' },
     { id: 104, selectedOption: 'General Knowledge' ,image:'https://quizdemo.wrteam.in/images/category/1676895649.6293.png'},
     // { id: 105, selectedOption: 'Matrices' ,image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png'},
@@ -35,16 +35,13 @@ const AnsweroptiontrueFalse=[
 
 
 function QuestionsCategory() {
-    // let datavalue={
-    //     category:''
-    // }
+
  
     const [textareaValue, setTextareaValue] = useState('');
     const [selectedItem, setSelectedItem] = useState(null);
     const [valuTextareahint,setvaluTextareahint]=useState('')
     const [answerElement,setanswer]=useState('')
 
-    // const []
 
 
 
@@ -61,9 +58,7 @@ function QuestionsCategory() {
            const newtext=event.target.value
            const newValue = event.target.value;
 
-        // setvaluTextareahint(event.target.value)
         if (newValue.length <= maxCharacters) {
-            // setTextareaValue(newValue);
             setvaluTextareahint(newtext)
 
         }
@@ -77,7 +72,19 @@ function QuestionsCategory() {
     const [showTrueFalse, setShowTrueFalse] = useState(false);
     const [showImage, setShowImage] = useState(false);
     // const handleChange=()=>{
+            const [optionA,setOptionA]=useState('')
+            const [optionB,setOptionB]=useState('')
+            const [optionC,setOptionC]=useState('')
+            const [optionD,setOptionD]=useState('')
+            const [trueElement,setTrueElement]=useState(true)
+            const [flaseElement,setFalseElement]=useState(false)
 
+            const [isvideoupload,setvideoupload]=useState(false)
+
+
+            const [isAudioUpload,setAudioupload]=useState(false)
+
+            const [QuestionType,setQuestionType]=useState("Text")
 
 
 
@@ -90,39 +97,76 @@ function QuestionsCategory() {
     const handleTrueFalseClick = () => {
         setShowOptions(false);
         setShowTrueFalse(true);
-        setShowImage(false);
     };
 
     const handleImageClick = () => {
         setShowOptions(false);
         setShowTrueFalse(false);
         setShowImage(true);
+        
     };
+
+    
+// Question TypeButtons
 
     const handleTextClick=()=>{
         setShowText(true)
         setshowmedia(false)
-
+        setvideoupload(false)
+        setAudioupload(false)
+        setQuestionType('Text')
     }
 
-    const handleMediaClick=()=>{
-          setShowText(false)
+   
+    const handleMediaImage=()=>{
+        setShowText(false)
         setshowmedia(true)
+        setvideoupload(false)
+        setAudioupload(false)
+        setQuestionType('Image')
+
+
+
     }
+
+    const handleMediaVideo=()=>{
+        setvideoupload(true)
+        setshowmedia(false)
+        setAudioupload(false)
+        setShowText(false)
+        setQuestionType('Video')
+
+
+    }
+
+    const handleMediaAudio=()=>{
+        setAudioupload(true)
+        setvideoupload(false)
+        setshowmedia(false)
+        setQuestionType('Audio')
+
+
+    }
+
 
 
     
     const  onhandleClick=()=>{
         const data={
             'category':selectedItem,
+            'statement':textareaValue,
+            'question_type':QuestionType,
+
             'option_1':optionA,
             'option_2':optionB,
             'option_3':optionC,
             'option_4':optionD,
-            'option_true':trueElement,
-            'option_false':flaseElement,
+            // 'option_true':trueElement,
+            // 'option_false':flaseElement,
             'hint':valuTextareahint,
-            'answer':answerElement
+            'answer':answerElement,
+
+            // 'OptionType'
 
         }
         console.log(data)
@@ -145,16 +189,7 @@ function QuestionsCategory() {
     };
 
 
-    // }
-    const [optionA,setOptionA]=useState('')
-    const [optionB,setOptionB]=useState('')
-    const [optionC,setOptionC]=useState('')
-    const [optionD,setOptionD]=useState('')
-    const [trueElement,setTrueElement]=useState(true)
-    const [flaseElement,setFalseElement]=useState(false)
-
-
-    // setOptionD
+ 
     const handleanswer=(event)=>{
         setanswer(event.target.value)
     }
@@ -227,7 +262,11 @@ function QuestionsCategory() {
 
                 <div className='buttonContainer'>
                         <button onClick={handleTextClick} className={showText ? 'selectedbuttonQuestions' : 'noneSelected'}>Text</button>
-                        <button onClick={handleMediaClick} className={`${showmedia? 'selectedbuttonQuestions' : 'noneSelected'} `} >Image/Video/Audio</button>
+                        <button onClick={handleMediaImage} className={`${showmedia? 'selectedbuttonQuestions' : 'noneSelected'} `} >Image</button>
+                        <button onClick={handleMediaVideo} className={`${isvideoupload? 'selectedbuttonQuestions' : 'noneSelected'} `} >Video</button>
+                        <button onClick={handleMediaAudio} className={`${isAudioUpload? 'selectedbuttonQuestions' : 'noneSelected'} `} >Audio</button>
+
+
                         {/* <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelected'}>Image</button> */}
                     </div>
                  {
@@ -251,7 +290,7 @@ function QuestionsCategory() {
 
                  
              {
-                showmedia&&(
+                showmedia && (
                     <div className='conatinerQuestionType'>
                     <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Question</p>
                     <textarea
@@ -265,15 +304,60 @@ function QuestionsCategory() {
                         cols={50} 
                         required
                     />
-                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Media for Question </p>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>{QuestionType} Type Question </p>
                     <input type="file" onChange={handleFileChange} accept="image/*" className='textInputnameImage' />
                  </div>  
                 )
              }  
+
+
+{
+                isvideoupload && (
+                    <div className='conatinerQuestionType'>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Question</p>
+                    <textarea
+                        placeholder=''
+                        className='textareaElement'
+                        id="textarea"
+                        value={textareaValue}
+                        onChange={handleChange}
+                        maxLength={maxCharacters}
+                        rows={4} 
+                        cols={50} 
+                        required
+                    />
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>{QuestionType} Type Question </p>
+                    <input type="file" onChange={handleFileChange} accept="image/*" className='textInputnameImage' />
+                 </div>  
+                )
+             }  
+
+{
+                isAudioUpload && (
+                    <div className='conatinerQuestionType'>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Question</p>
+                    <textarea
+                        placeholder=''
+                        className='textareaElement'
+                        id="textarea"
+                        value={textareaValue}
+                        onChange={handleChange}
+                        maxLength={maxCharacters}
+                        rows={4} 
+                        cols={50} 
+                        required
+                    />
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>{QuestionType} Type Question </p>
+                    <input type="file" onChange={handleFileChange} accept="image/*" className='textInputnameImage' />
+                 </div>  
+                )
+             } 
+
+
                 <div>
                     <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Option Type</p>
                     <div className='buttonContainer'>
-                        <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelected'} >Options</button>
+                        <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelected'} >Text</button>
                         <button onClick={handleTrueFalseClick} className={`${showTrueFalse ? 'selectedbutton' : 'noneSelected'} buttontrue`} >True/False</button>
                         <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelected'}>Image</button>
                     </div>
