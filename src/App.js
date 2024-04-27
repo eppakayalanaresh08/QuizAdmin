@@ -22,8 +22,8 @@ import Marquee from "react-fast-marquee";
 function App() {
   return (
     <BrowserRouter>
-      <Marquee style={{color:'red',backgroundColor:'black',fontFamily:'Roboto',fontSize:25}}>
-      API connections are currently in progress, and we will provide updates shortly.    </Marquee>
+      <Marquee style={{color:'red',backgroundColor:'White',fontFamily:'Roboto',fontSize:25}}>
+      API Integration are currently in progress, and we will provide updates shortly.    </Marquee>
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/leaderboard" component={Leaderboard} />
