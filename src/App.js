@@ -5,19 +5,14 @@ import LoginPage from './components/Login';
 import HomePage from './components/Home';
 import Leaderboard from './components/LeaderBoard';
 import Users from './components/Users';
-// import QuestionCreate from './components/Question';
-
-import MainCategory from './components/MainCategory';
 import ContestsPage from './components/Contests';
 import EditEmployee from './components/EditEmployee';
 import CategoryCreate from './components/Category';
 import EmployeePage from './components/EmployeePage';
 import Marquee from "react-fast-marquee";
+import QuestionsCategory from './components/Questions';
 
-// import AddEmployePage from './components/AddEmployee';
-/// import AddComponent from './components/AddEmployee';
-// import AddEmployees from './components/AddEmployee';
-// import AddEmployee from './components/AddEmployee';
+
 
 function App() {
   return (
@@ -29,7 +24,8 @@ function App() {
           <Route exact path="/leaderboard" component={Leaderboard} />
           <Route exact path="/Users" component={Users}/>
           <Route exact path="/Category" component={CategoryCreate}/>
-          <Route exact path="/Questions" component={MainCategory}/>
+          {/* <Route exact path="/Questions" component={MainCategory}/> */}
+          <Route exact path="/Questions" component={QuestionsCategory}/>
 
           <Route exact path="/Contests" component={ContestsPage}/>
           <Route exacr path="/Edit" component={EditEmployee}/>

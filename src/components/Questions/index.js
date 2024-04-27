@@ -34,7 +34,7 @@ const AnsweroptiontrueFalse=[
 
 
 
-function MainCategory() {
+function QuestionsCategory() {
     // let datavalue={
     //     category:''
     // }
@@ -425,7 +425,7 @@ function MainCategory() {
     )
 }
 
-export default MainCategory
+export default QuestionsCategory
 
 
 
