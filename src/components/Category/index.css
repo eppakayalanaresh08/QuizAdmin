@@ -1,39 +1,42 @@
-.container-bg{
+.container-bg {
     display: flex;
     flex-direction: row;
-    width:'100%';
+    width: '100%';
+    height: 100vh;
 }
 
-.nav-container{
-    width:'19%';
+.nav-container {
+    width: '19%';
 }
 
 
-.inputext{
+.inputext {
     display: flex;
     flex-direction: column;
 }
 
-.textInputname{
-    width:30vw;
+.textInputname {
+    width: 30vw;
     border-color: rgb(176 190 197);
     border-radius: 4px;
     padding: 10px;
 
-    border-width: 1.5px;
+    border-width: 2px;
     border-style: solid;
+    outline: none;
 }
 
-.radiocontainer{
-    width:180px;
+.radiocontainer {
+    width: 165px;
     border-color: rgb(176 190 197);
     border-width: 1.5px;
     border-style: solid;
     display: flex;
     margin-top: 5px;
     height: 40px;
-    border-radius: 7px;
+    border-radius: 5px;
     margin-bottom: 16px;
+    /* padding: 2px; */
     /* padding: 2px; */
 
 
@@ -41,11 +44,11 @@
 
 
 
-.radioElement{
+.radioElement {
     margin: 2px;
 }
 
-.leftRadioButton{
+.leftRadioButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,18 +56,18 @@
     /* height:30px; */
 
     border-left: 2px solid rgb(176 190 197);
- 
+    padding: 2px;
 
 
 }
 
-.activecontainer{
+.activecontainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.categoryName{
+.categoryName {
     margin-top: 7px;
     margin-bottom: 7px;
 
@@ -72,6 +75,18 @@
     font-weight: 500;
 }
 
-.conatinerbg-inputs{
+.conatinerbg-inputs {
     margin-top: 40px;
+}
+
+.inputelement{
+    font-family: 'Roboto';
+}
+.imageElementInput{
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    margin-right: 15px;
+    padding: 4px;;
+    
 }

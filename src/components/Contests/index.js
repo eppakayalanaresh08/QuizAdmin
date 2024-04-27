@@ -2,8 +2,12 @@ import Navbar from '../Navbar'
 import React, { useState ,useEffect} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import './index.css'
+
+
+import { ColorCode } from '../ColorCode';
+
+
 
 // const products = [
 //     { id: 1, name: 'Apple MacBook Pro 17"', color: 'Silver', category: 'Laptop', price: '$2999' },
@@ -188,31 +192,31 @@ function ContestsPage() {
 
 
     return (
-        <div className='containerbg'>
+      <div className='containerbg' style={{backgroundColor:ColorCode.bgColor}}>
             <div className='navContainer'>
                 <Navbar />
             </div>
 
      <div className='right-container-contest'>
             <div className='container-right-Element-contest'>
-                <h1 className='nameContest'>Create a Contest</h1>
+                <h1 className='nameContest' style={{color:ColorCode.textColor}}>Create a Contest</h1>
                 <div className='container-input-contest'>
                     <div className='eachInputElement'>
 
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white "> Name</label>
+                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white " style={{color:ColorCode.textColor}}> Name</label>
                         <input type="text" id="first_name" name="name"
-                          
+                          style={{borderColor:ColorCode.borderColor}} 
                             className="textInputnameImagecontest" placeholder="Name" required />
                     </div>
 
                     <div className='eachInputElement'>
-                        <p className='imageElement'>Image</p>
-                        <input type="file" onChange={''} accept="*/*" className='textInputnameImagecontest' />
+                        <p className='imageElement' style={{color:ColorCode.textColor}}>Image</p>
+                        <input type="file" onChange={''} accept="*/*" className='textInputnameImagecontest' style={{borderColor:ColorCode.borderColor}} />
 
                     </div>
                     <div className='datepickerElement eachInputElement'>
                         <div>
-                            <p className='imageElement'>Start Date</p>
+                            <p className='imageElement' style={{color:ColorCode.textColor}}>Start Date</p>
                         <DatePicker
                         className='datepickerstart'
                             selected={startDate}
@@ -226,7 +230,7 @@ function ContestsPage() {
                         />
                         </div>
                         <div>
-                            <p className='imageElement'>End Date</p>
+                            <p className='imageElement' style={{color:ColorCode.textColor}}>End Date</p>
                          <DatePicker
                         className='datepickerstart'
                             selected={endDate}
@@ -243,16 +247,16 @@ function ContestsPage() {
 
                    
                     <div className='eachInputElement'>
-                        <p className='imageElement'>Entry Fee Points</p>
+                        <p className='imageElement' style={{color:ColorCode.textColor}}>Entry Fee</p>
 
 
                         <input type="number" id="first_name" name="name"
                             defaultValue={0}
-                          
+                            style={{borderColor:ColorCode.borderColor}}
                             className="textInputnameImagecontest" placeholder="These amount will be deducted from users wallet" required />
                     </div>
                     <div className='elementDescription'>
-                        <p>Description</p>
+                        <p style={{color:ColorCode.textColor}}>Description</p>
                     <textarea
                     placeholder=''
                     className='textareaElementDescription'
@@ -262,7 +266,7 @@ function ContestsPage() {
                     value={textareaValue}
                     onChange={handleChange}
                     maxLength={maxCharacters}
-                   
+                    style={{borderColor:ColorCode.borderColor}} 
                 />                
                     </div>
                 </div>
@@ -274,9 +278,9 @@ function ContestsPage() {
           <label htmlFor="table-search" className="sr-only">Search</label>
         </div>
         <div className='QuestionContainerselect'>
-        <p className='SelectQuestions'>Select Questions for Daily Quiz</p>
+        <p className='SelectQuestions' style={{color:ColorCode.textColor}}>Select Questions for Daily Quiz</p>
         <button className='buttonQuiz' onClick={handleRandomSelection}>Random Quiz</button>
-        <button className='buttonDelete' onClick={handleRemoveSelected}>Delete Quiz</button>
+        <button className='buttonDelete' onClick={handleRemoveSelected}>Clear</button>
 
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -366,6 +370,8 @@ function ContestsPage() {
                 </div>
             )}
 
+            
+
       </div>
       <div className='selectedProduct'>
         <h2 className='SelectedQuestions'>Selected Questions</h2>
@@ -373,9 +379,9 @@ function ContestsPage() {
           {selectedProducts.map(productId => {
             const product = products.find(p => p.id === productId);
             return (
-                <div className='listElementContainer'>
+                <div className='listElementContainer' style={{color:'#fff'}}>
                     <p>{product.idElement}{')'}</p>
-              <li className='listitem' key={productId}>{product.name}</li>
+              <li className='listitem' key={productId} >{product.name}</li>
               </div>
 
             );

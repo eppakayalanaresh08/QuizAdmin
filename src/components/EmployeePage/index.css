@@ -1,0 +1,28 @@
+.bg-container{
+    height:100vh;
+}
+
+.navbar-container{
+    width:300px;
+}
+
+.button-card-add{
+    /* text-align: end; */
+    display: flex;
+    border:1px solid #ffffff;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+    margin-left: 1300px;
+    margin-top: 50px;
+
+}
+
+
+/* .main-container{
+    display: flex; 
+    height:100vh;
+    justify-content: center; 
+
+} */

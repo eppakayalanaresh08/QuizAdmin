@@ -1,3 +1,8 @@
+.bgContainer{
+    height: 100vh;
+}
+
+
 .textwelcome{
     text-align: center;
 }
@@ -34,4 +39,21 @@
  
     height:120px;
     width:260px
+}
+
+
+.nameTotalcountcard{
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container-each-card{
+    box-shadow: 4px 8px 0 rgba(34, 34, 34, 0.899);
+    /* box-shadow: 10px 10px; */
+
+}
+
+.adiminheading{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 50px;
 }

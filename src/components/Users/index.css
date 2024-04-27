@@ -1,22 +1,170 @@
-.bg-container{
+.bg-container {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
-    /* justify-content: center;
-    align-items: center; */
+    background-color:#0e0b0b;
+    height: 100vh; 
+    /* color:#0f0f0fd4 */
 
 }
-.nav-container{
-    width:19%;
+
+.nav-container {
+    width: 19%;
 }
 
-/* .tablecontainer{
-    width:70%;
+/* .table-container{
+    height: 60vh;
     
 } */
 
-.container-User{
+
+.container-User {
+    display: flex;    width: 100vw;
+
+    flex-direction: column;
+}
+
+.imageElementProfile {
+    height: 40px;
+}
+
+.tablecontainerElement {
+    background-color: #111827;
+
+    margin-top: 20px;
+}
+
+.bg-Element-table {
+    background-color: #111827;
+}
+
+.displayCashbg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+.popup-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+}
+
+
+
+
+.closeButton {
+    background-color: #3e9c35;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.popup-content button:hover {
+    background-color: #382e87;
+}
+
+.submitbutton {
+    background-color: #26B99A;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+
+}
+
+.inputText {
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.inputContainerbg {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer {
+    display: flex;
+    margin: 20px;
+}
+
+
+.headingnameWallet {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.addheading {
+    font-family: 'sans-serif';
+    font-weight: 900;
+    width: 100px;
+}
+
+.containerButton {
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+}
+
+
+
+
+
+
+
+.buttonStatus:hover{
+    background-color: #337ab7;
+    color:#fff;
+
+}
+
+.container-updateStatus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1.5px solid #b0bec5;
+    width: 165px;
+    margin-top: 30px;
+    /* align-self: center; */
+    /* border-color: rgb(176 190 197);
+    border-width: 1.5px;
+    border-style: solid;
+    height: 40px;
+    border-radius: 5px; */
    
 }

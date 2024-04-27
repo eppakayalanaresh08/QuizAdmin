@@ -20,6 +20,9 @@
     text-align: center;
     font-weight: 600;
     color: #73879C;
+    margin-left: 550px;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
@@ -48,14 +51,18 @@
     font-size: 25px;
     margin-bottom: 10px;
     margin-top: 10px;
+    color:#73879C;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 
 .textareaElement{
-    border-color: rgb(176 190 197);
+    border-color: #ff7618;
     border-width: 1.8px;
     border-style: solid;
     margin-bottom: 10px;;
     width:630px;
+    outline: none;
 
 
 }
@@ -69,7 +76,7 @@
 
 .textInputnameImage{
   
-    border-color: rgb(176 190 197);
+    border-color: #ff7618;
     border-radius: 4px;
     padding: 10px;
 
@@ -80,7 +87,7 @@
 }
 
 .textinputElement{
-    border-color: rgb(176 190 197);
+    border-color:#ff7618;
     width:300px;
 
     border-width: 1.5px;
@@ -89,18 +96,22 @@
 }
 
 .noneSelected{
-    background-color: #ffffff;
+    background-color: #000;
     min-width:120px;
+    color:#ffffff;
+    font-family: monospace;
 }
 
 .selectedbuttonQuestions{
-    background-color: #73879C;
+    background-color: #ff7618;
     color:#ffffff;
-    width:180px
+    width:180px;
+    font-family: monospace;
+
 }
 
 .selectedbutton{
-    background-color: #73879C;
+    background-color: #ff7618;
     color:#ffffff;
     min-width:120px;
 
@@ -108,7 +119,7 @@
 }
 
 .buttonContainer{
-    border:1px solid #73879C;
+    border:1px solid #ff7618;
     width:362px;
     display: flex;
     justify-content: space-between;
@@ -143,6 +154,8 @@
 
 .nameoptionElement{
    font-weight: 600;
+   color:#73879C;
+
 }
 
 .conatinerQuestionType{
@@ -155,8 +168,9 @@
 }
 
 .importQsheading{
-   margin-top: 40px;
+   margin-top: 70px;
    font-weight: 500;
+
 }
 
 .csvQuestions{
@@ -173,11 +187,7 @@
 .container-right-Element{
     display: flex;
     flex-direction: row;
-
-
-
-
-    background-color: white;
+    background-color:#000000;
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
@@ -190,4 +200,8 @@
 .imagecategory{
     height:5px;
     width: 5px;
+}
+
+.text-button{
+    color:#73879C;
 }

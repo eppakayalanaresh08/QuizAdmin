@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar'
 import './index.css'
 
+import { ColorCode } from '../ColorCode';
+
 const items = [
     { id: 101, selectedOption: 'Trigonometric',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' },
     { id: 102, selectedOption: 'Business' ,image:'https://quizdemo.wrteam.in/images/category/1676895620.2716.png'},
@@ -186,29 +188,26 @@ function MainCategory() {
 
     return (
 
-        <div className='bg-container-main'>
+        <div className='bg-container-main' style={{backgroundColor:ColorCode.bgColor}}>
             <div className='navElement'>
                 <Navbar />
             </div>
             <div className='container-right-Element'>
             <div className='QuestionContainer'>
-                <h1 className='Quizheading'>Questions for Quiz</h1>
+                <h1 className='Quizheading' style={{color:ColorCode.borderColor}}>Questions for Quiz</h1>
                 <div className=''>
-                    <h1 className='nameQuestions'>Create Question</h1>
+                    <h1 className='nameQuestions' style={{color:ColorCode.borderColor}} >Create Question</h1>
                 </div>
               
-                <p className='nameElementQuestions'>Category</p>
+                <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Category</p>
                 <select className='selectElement' onChange={handleSelect}>
-                    <option>Select Main Category</option>
+                    <option >Select Main Category</option>
 
                     {
                         items.map((each) => (
                               
                                 <option>
-
-
-                                               {each.selectedOption}
-                         
+                {each.selectedOption}
                          </option>
                           
 
@@ -224,7 +223,7 @@ function MainCategory() {
         </div>
       )}
                 {/* <img src='https://quizdemo.wrteam.in/images/category/1676898247.1697.png' alt='' className='imagecategory'/> */}
-                <p className='nameElementQuestions'>Question Type</p>
+                <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Question Type</p>
 
                 <div className='buttonContainer'>
                         <button onClick={handleTextClick} className={showText ? 'selectedbuttonQuestions' : 'noneSelected'}>Text</button>
@@ -234,7 +233,7 @@ function MainCategory() {
                  {
                     showText&&(
                         <div className='conatinerQuestionType'>
-                        <p className='nameElementQuestions'>Question</p>
+                        <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Question</p>
                         <textarea
                             placeholder=''
                             className='textareaElement'
@@ -254,7 +253,7 @@ function MainCategory() {
              {
                 showmedia&&(
                     <div className='conatinerQuestionType'>
-                    <p className='nameElementQuestions'>Question</p>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Question</p>
                     <textarea
                         placeholder=''
                         className='textareaElement'
@@ -266,40 +265,40 @@ function MainCategory() {
                         cols={50} 
                         required
                     />
-                    <p className='nameElementQuestions'>Media for Question </p>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Media for Question </p>
                     <input type="file" onChange={handleFileChange} accept="image/*" className='textInputnameImage' />
                  </div>  
                 )
              }  
                 <div>
-                    <p className='nameElementQuestions'>Option Type</p>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Option Type</p>
                     <div className='buttonContainer'>
-                        <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelected'}>Options</button>
+                        <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelected'} >Options</button>
                         <button onClick={handleTrueFalseClick} className={`${showTrueFalse ? 'selectedbutton' : 'noneSelected'} buttontrue`} >True/False</button>
                         <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelected'}>Image</button>
                     </div>
 
-                    <p className='nameElementQuestions'>Options </p>
+                    <p className='nameElementQuestions' style={{color:ColorCode.borderColor}}>Options </p>
                     {showOptions && (
                         <div className='containerOptions'>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>A</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>A</p>
                                 <input type="text" placeholder="Option 1" className='textinputElement'   required onChange={TextOnchangeoptionA} value={optionA}
 />
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>B</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>B</p>
                                 <input type="text" placeholder="Option 2" className='textinputElement'   required onChange={TextOnchangeoptionB} value={optionB}
  />
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>C</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>C</p>
 
                                 <input type="text" placeholder="Option 3" className='textinputElement'   required onChange={TextOnchangeoptionC} value={optionC}
  />
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>D</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>D</p>
 
                                 <input type="text" placeholder="Option 4" className='textinputElement'  required    onChange={TextOnchangeoptionD}     value={optionD}         />
                             </div>
@@ -309,11 +308,11 @@ function MainCategory() {
                     {showTrueFalse && (
                         <div className='containerOptions'>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>A</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>A</p>
                                 <input type='text' className='textinputElement' placeholder="True"  defaultValue={true}  onChange={TrueOption} value={trueElement}/>
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>B</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>B</p>
                                 <input type="text" className='textinputElement' placeholder="False" defaultValue={false} onChange={FalseOption} value={flaseElement}/>
                             </div>
                         </div>
@@ -322,19 +321,19 @@ function MainCategory() {
                     {showImage && (
                         <div className='containerOptions'>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>A</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>A</p>
                                 <input type="file" className='textinputElement' />
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>B</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>B</p>
                                 <input type="file" className='textinputElement' />
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>C</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>C</p>
                                 <input type="file" className='textinputElement' />
                             </div>
                             <div className='eachOption'>
-                                <p className='nameoptionElement'>D</p>
+                                <p className='nameoptionElement' style={{color:ColorCode.textColor}}>D</p>
                                 <input type="file" className='textinputElement' />
                             </div>
                         </div>
@@ -344,7 +343,7 @@ function MainCategory() {
 
                 </div>
                 <div>
-                    <p className='nameElementQuestions'>Answer</p>
+                    <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Answer</p>
                     {
                         showOptions&&   
                         <select className='selectElement' onChange={handleanswer}>
@@ -393,7 +392,7 @@ function MainCategory() {
                  
                 </div>
 
-                <p className='nameElementQuestions'> Hint
+                <p className='nameElementQuestions' style={{color:ColorCode.textColor}}> Hint
                 </p>
                 <textarea
                     placeholder=''
@@ -406,15 +405,16 @@ function MainCategory() {
                     cols={50} 
                 />
                 <div className='buttoncontainer'>
-                    <button type="button" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick}>Create Now</button>
+                    <button type="button" class="text-button text-gray-900 hover:text-white border border-gray-1200 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick} style={{color:ColorCode.textColor}}>Create Now</button>
                 </div>
-            </div>
+            </div>    
+
             <div className='importQuestions'>
-                <h1 className='importQsheading'>Import Questions</h1>
-                <p className='csvQuestions'>CSV Questions file</p>
+                <h1 className='importQsheading' style={{color:ColorCode.textColor}}>Import Questions</h1>
+                <p className='csvQuestions'style={{color:ColorCode.textColor}}>CSV Questions file</p>
                     <input type="file" onChange={handleFileChange} accept="*/*" className='textInputnameImage' />
                     <div className='buttoncontainerQuiz'>
-                    <button type="button" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick}>Upload CSV file</button>
+                    <button type="button" class="text-button text-gray-900 hover:text-white border border-orange-1200 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick} style={{color:ColorCode.textColor}}>Upload CSV file</button>
                 </div>
             </div>
            

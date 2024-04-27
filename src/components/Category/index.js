@@ -39,7 +39,11 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar'
 import './index.css'
 
-function QuestionCreate() {
+
+
+import { ColorCode } from '../ColorCode';
+
+function CategoryCreate() {
   const [formData, setFormData] = useState({
     name: '',
     is_active: false,
@@ -108,7 +112,7 @@ function QuestionCreate() {
   };
 
   return (
-    <div className='container-bg'>
+    <div className='container-bg' style={{backgroundColor:ColorCode.bgColor}}>
       <div className='nav-container'>
 
         <Navbar />
@@ -117,17 +121,17 @@ function QuestionCreate() {
         <form onSubmit={handleSubmit} >
 
           <div class="inputext" >
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category Name</label>
+            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" style={{color:ColorCode.textColor}}>Category Name</label>
             <input type="text" id="first_name" name="name"
               value={formData.name}
-              onChange={handleChange} className="textInputname" placeholder="Name" required />
+              onChange={handleChange} className="textInputname"  style={{borderColor:ColorCode.borderColor}} placeholder="Name" required />
           </div>
 
-          <p className='categoryName'>Category</p>
+           <p className='categoryName' style={{color:ColorCode.textColor}}>Category</p>
 
           <div className="radiocontainer">
 
-            <div className='activecontainer'>
+            <div className='activecontainer' style={{borderColor:ColorCode.borderColor}}>
               <input
                 type="radio"
                 id="active"
@@ -138,11 +142,10 @@ function QuestionCreate() {
                 className="radioElement"
 
               />
-              <label htmlFor="active" className='inputelement'>Active</label>
+              <label htmlFor="active" className='inputelement' style={{color:ColorCode.textColor}}>Active</label>
             </div>
 
             <div className='leftRadioButton'>
-
               <input
                 type="radio"
                 id="inactive"
@@ -153,11 +156,11 @@ function QuestionCreate() {
                 className="radioElement"
 
               />
-              <label htmlFor="inactive" className='inputelement'>Inactive</label>
+              <label htmlFor="inactive" className='inputelement' style={{color:ColorCode.textColor}}>Inactive</label>
             </div>
           </div>
-          <p className='categoryName'>Category Icon</p>
-          <input type="file" onChange={handleFileChange} accept="image/*" />
+          <p className='categoryName' style={{color:ColorCode.textColor}}>Category Icon</p>
+          <input type="file" onChange={handleFileChange} accept="image/*" className='imageElementInput'  style={{borderColor:ColorCode.borderColor}} />
           {formData.icon && (
             <img
               src={image}
@@ -166,7 +169,7 @@ function QuestionCreate() {
             />
           )}
           {/* <p>Selected status: {formData.is_active ? 'Active' : 'Inactive'}</p> */}
-          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" >
             ADD
           </button>
           {/* <button type="submit">Submit</button> */}
@@ -176,7 +179,10 @@ function QuestionCreate() {
   );
 }
 
-export default QuestionCreate;
+// export default QuestionCreate;
+
+
+export default CategoryCreate
 
 
 

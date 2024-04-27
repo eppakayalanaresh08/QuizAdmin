@@ -10,20 +10,23 @@
     
 } */
 
+
+
 .right-container-contest{
     display: flex;
     flex-direction: column;
+
 }
 
 .nameContest{
     font-weight: 600;
-    color: #73879C;
+    /* color: #73879C; */
+    
 }
 
 .container-right-Element-contest{
     display: flex;
     flex-direction: column;
-    background-color: white;
     border-radius: 15px;
     padding: 30px;
  
@@ -47,10 +50,11 @@
     border-radius: 4px;
     padding: 10px;
 
-    border-width: 1.5px;
+    border-width: 2px;
     border-style: solid;
     width:625px;
     margin-right: 10px;
+    outline: none;
     /* margin-top: 10px; */
 
 }
@@ -91,8 +95,9 @@
     width:100%;
     border-color: rgb(176 190 197);
     border-radius: 4px;
-    border-width: 1.5px;
+    border-width: 3px;
     border-style: solid;
+    outline: none;
     /* margin-left: 100px; */
 }
 
@@ -162,7 +167,7 @@
 }
 
 .buttonDelete{
-    background-color: rgb(250, 66, 66);
+    background-color: #b3b322;
     color:#ffffff;
     padding: 10px;
     border-radius: 10px;
