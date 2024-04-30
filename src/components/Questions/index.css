@@ -126,9 +126,16 @@
 .selectedbutton{
     background-color: #ff7618;
     color:#ffffff;
-    min-width:120px;
+    width: 135px;
 
     /* padding: 5px;; */
+}
+
+.noneSelectedoptiontype{
+    background-color: #000;
+    width:130px;
+    color:#ffffff;
+    font-family: monospace;
 }
 
 

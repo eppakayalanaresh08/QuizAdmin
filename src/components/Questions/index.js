@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import Navbar from '../Navbar'
 import './index.css'
 
 import { ColorCode } from '../ColorCode';
 
-const items = [
-    { id: 101, selectedOption: 'Sports',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' },
-    { id: 102, selectedOption: 'Entertainment' ,image:'https://quizdemo.wrteam.in/images/category/1676895620.2716.png'},
-    { id: 103, selectedOption: 'Entertainment',image:'https://quizdemo.wrteam.in/images/category/1676884941.9042.png' },
-    { id: 104, selectedOption: 'General Knowledge' ,image:'https://quizdemo.wrteam.in/images/category/1676895649.6293.png'},
-    // { id: 105, selectedOption: 'Matrices' ,image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png'},
-    // { id: 106, selectedOption: 'Scientific',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' }
-];
+// const items = [
+//     { id: 101, selectedOption: 'Sports',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' },
+//     { id: 102, selectedOption: 'Entertainment' ,image:'https://quizdemo.wrteam.in/images/category/1676895620.2716.png'},
+//     { id: 103, selectedOption: 'Entertainment',image:'https://quizdemo.wrteam.in/images/category/1676884941.9042.png' },
+//     { id: 104, selectedOption: 'General Knowledge' ,image:'https://quizdemo.wrteam.in/images/category/1676895649.6293.png'},
+//     // { id: 105, selectedOption: 'Matrices' ,image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png'},
+//     // { id: 106, selectedOption: 'Scientific',image:'https://quizdemo.wrteam.in/images/category/1676898247.1697.png' }
+// ];
 
 const Answeroption = [
-    { id: 101, selectedOption: 'A' },
-    { id: 102, selectedOption: 'B' },
-    { id: 103, selectedOption: 'C' },
-    { id: 104, selectedOption: 'D' },
+    { id: 101, selectedOption: 'A' ,correct:1},
+    { id: 102, selectedOption: 'B' ,correct:2},
+    { id: 103, selectedOption: 'C' ,correct:3},
+    { id: 104, selectedOption: 'D',correct:4 },
 
 
 ]
@@ -41,8 +41,19 @@ function QuestionsCategory() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [valuTextareahint,setvaluTextareahint]=useState('')
     const [answerElement,setanswer]=useState('')
+    const [getCategorymethod,setgetCategorymethod]=useState([])
 
-
+    useEffect(() => {
+        fetch('https://freakapp.pythonanywhere.com/category/')
+           .then((response) => response.json())
+           .then((data) => {
+              console.log(data);
+              setgetCategorymethod(data);
+           })
+           .catch((err) => {
+              console.log(err.message);
+           });
+     }, []);
 
 
     const maxCharacters = 100;
@@ -72,9 +83,9 @@ function QuestionsCategory() {
     const [showTrueFalse, setShowTrueFalse] = useState(false);
     const [showImage, setShowImage] = useState(false);
     // const handleChange=()=>{
-            const [optionA,setOptionA]=useState('')
-            const [optionB,setOptionB]=useState('')
-            const [optionC,setOptionC]=useState('')
+    const [optionA,setOptionA]=useState('')
+    const [optionB,setOptionB]=useState('')
+    const [optionC,setOptionC]=useState('')
             const [optionD,setOptionD]=useState('')
             const [trueElement,setTrueElement]=useState(true)
             const [flaseElement,setFalseElement]=useState(false)
@@ -84,25 +95,33 @@ function QuestionsCategory() {
 
             const [isAudioUpload,setAudioupload]=useState(false)
 
-            const [QuestionType,setQuestionType]=useState("Text")
+            const [QuestionType,setQuestionType]=useState("text")
+            const [optionType,setOptionType]=useState("text")
 
-
+          
+            
 
     const handleOptionsClick = () => {
         setShowOptions(true);
         setShowTrueFalse(false);
         setShowImage(false);
+        setOptionType('text')
     };
 
     const handleTrueFalseClick = () => {
         setShowOptions(false);
         setShowTrueFalse(true);
+        setShowImage(false);
+
+        setOptionType('Boolean')
+
     };
 
     const handleImageClick = () => {
         setShowOptions(false);
         setShowTrueFalse(false);
         setShowImage(true);
+        setOptionType('media')
         
     };
 
@@ -114,7 +133,7 @@ function QuestionsCategory() {
         setshowmedia(false)
         setvideoupload(false)
         setAudioupload(false)
-        setQuestionType('Text')
+        setQuestionType('text')
     }
 
    
@@ -151,25 +170,49 @@ function QuestionsCategory() {
 
 
     
-    const  onhandleClick=()=>{
-        const data={
+    const  onhandleClick=async(e)=>{
+        e.preventDefault();
+
+        const formData={
             'category':selectedItem,
             'statement':textareaValue,
             'question_type':QuestionType,
-
             'option_1':optionA,
             'option_2':optionB,
             'option_3':optionC,
             'option_4':optionD,
-            // 'option_true':trueElement,
-            // 'option_false':flaseElement,
             'hint':valuTextareahint,
             'answer':answerElement,
-
-            // 'OptionType'
+             'option_type':optionType,
+             'true_false_type':false,
+             'question_media':null
 
         }
-        console.log(data)
+        console.log(formData)
+
+        try {
+            const response = await fetch('https://freakapp.pythonanywhere.com/question/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+            });
+            // Alert('successfully Category')
+            console.log(response,'successfully')
+            
+             window.location.reload(false);
+            if (!response.ok) {
+              throw new Error('Failed to create entry');
+            }
+            // window.location.reload(false);
+      
+            // If successful, you can handle the response here
+            console.log('successfully Category');
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        // console.log(data)
 
     }
 
@@ -178,20 +221,15 @@ function QuestionsCategory() {
 
     const handleSelect = (event) => {
         const selectedIndex=event.target.value
-    //   const selectedIndex = event.target.selectedIndex;
-    //  let datacategory=DataQuestion.category
-    //   datacategory=event.target.value
-    //   console.log(DataQuestion)
 
-    
-    //   setSelectedItem(items[selectedIndex - 1]); // -1 to account for the "Select Main Category" option
     setSelectedItem(selectedIndex)
     };
 
 
  
     const handleanswer=(event)=>{
-        setanswer(event.target.value)
+        const optionvalue=parseInt(event.target.value)
+        setanswer(optionvalue)
     }
 
 
@@ -239,10 +277,10 @@ function QuestionsCategory() {
                     <option >Select Main Category</option>
 
                     {
-                        items.map((each) => (
+                        getCategorymethod.map((each) => (
                               
-                                <option>
-                {each.selectedOption}
+                      <option>
+                                  {each.name}
                          </option>
                           
 
@@ -357,9 +395,9 @@ function QuestionsCategory() {
                 <div>
                     <p className='nameElementQuestions' style={{color:ColorCode.textColor}}>Option Type</p>
                     <div className='buttonContainer'>
-                        <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelected'} >Text</button>
-                        <button onClick={handleTrueFalseClick} className={`${showTrueFalse ? 'selectedbutton' : 'noneSelected'} buttontrue`} >True/False</button>
-                        <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelected'}>Image</button>
+                        <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelectedoptiontype'} >Text</button>
+                        <button onClick={handleTrueFalseClick} className={`${showTrueFalse ? 'selectedbutton' : 'noneSelectedoptiontype'}`} >True/False</button>
+                        <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelectedoptiontype'}>Image</button>
                     </div>
 
                     <p className='nameElementQuestions' style={{color:ColorCode.borderColor}}>Options </p>
@@ -435,7 +473,7 @@ function QuestionsCategory() {
 
                         {
                             Answeroption.map((each) => (
-                                <option>{each.selectedOption}</option>
+                                <option>{each.correct}</option>
 
                             ))
                         }
