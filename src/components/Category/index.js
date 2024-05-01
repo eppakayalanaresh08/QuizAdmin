@@ -357,8 +357,47 @@ function CategoryCreate() {
     is_active: false,
     icon: null
   });
+
+
   const [categorydata, setCategoryPosts] = useState([]);
   const [image, setImage] = useState(null);
+
+
+  const [isOpenPopupEditCategory, setisOpenPopupEditCategory] = useState(false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const [updateEditcategorydata,setupdateDataEditdata]=useState({})
+
+
+  const PopupEditCategoryhandle = (eachItem) => {
+
+    setupdateDataEditdata(eachItem)
+    console.log(eachItem)
+
+    setisOpenPopupEditCategory(true)
+
+  }
+
+
+
+  const closePopup = () => {
+    setisOpenPopupEditCategory(false)
+  
+
+  };
+
 
   useEffect(() => {
     fetch('https://freakapp.pythonanywhere.com/category/')
@@ -390,14 +429,22 @@ function CategoryCreate() {
       [name]: value
     }));
   };
+  // handleRadioEditData
+  const handleRadioEditData = (e) => {
+    const value = e.target.value === 'true';
+    setupdateDataEditdata((prevState) => ({
+      ...prevState,
+      is_active: value
+    }));
+  };
 
-  const handleRadioChange = (e) => {
+  const handleRadioChange=(e)=>{
     const value = e.target.value === 'true';
     setFormData((prevState) => ({
       ...prevState,
       is_active: value
     }));
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -407,6 +454,9 @@ function CategoryCreate() {
       formDataToSend.append('name', formData.name);
       formDataToSend.append('is_active', formData.is_active);
       formDataToSend.append('icon', formData.icon);
+
+
+      console.log(formDataToSend)
 
       const response = await fetch('https://freakapp.pythonanywhere.com/category/', {
         method: 'POST',
@@ -420,11 +470,40 @@ function CategoryCreate() {
       }
 
       console.log('Category created successfully');
-      window.location.reload(false);
     } catch (error) {
       console.error('Error:', error);
     }
   };
+
+
+  const handlePopupCategoryEditSubmit = async (selectedCategory) => {
+    try {
+      const response = await fetch(`https://freakapp.pythonanywhere.com/category/${selectedCategory.id}`, {
+        method: 'PATCH', // Use PATCH method for partial updates
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ is_active: updateEditcategorydata.is_active }) // Only send the updated field
+      });
+
+      console.log(response)
+
+      if (!response.ok) {
+        throw new Error('Failed to update category');
+      }
+
+      console.log('Category updated successfully');
+      closePopup();
+      window.location.reload(false); // Reloading the page after update
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+
+
+
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7);
@@ -495,13 +574,14 @@ function CategoryCreate() {
                 value="false"
                 checked={!formData.is_active}
                 onChange={handleRadioChange}
-                className="radioElement"
+                className="radioElement" 
+                required
               />
               <label htmlFor="inactive" className='inputelement' style={{ color: ColorCode.textColor }}>Inactive</label>
             </div>
           </div>
           <p className='categoryName' style={{ color: ColorCode.textColor }}>Category Icon</p>
-          <input type="file" onChange={handleFileChange} accept="image/*" className='imageElementInput' style={{ borderColor: ColorCode.borderColor }} />
+          <input type="file" onChange={handleFileChange} required accept="image/*" className='imageElementInput' style={{ borderColor: ColorCode.borderColor }} />
           {formData.icon && (
             <img
               src={image}
@@ -522,7 +602,7 @@ function CategoryCreate() {
                   <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Category Name</th>
                   <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Category Status</th>
                   <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Category Icon</th>
-                  <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Delete Category</th>
+                  <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Category Action</th>
 
                 </tr>
               </thead>
@@ -537,6 +617,8 @@ function CategoryCreate() {
                         {/* <div className='Deletebg' >  */}
                          
                           <button className='deletebutton' onClick={() => OnDeletebutton(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
+                          <button className='deletebutton' onClick={() => PopupEditCategoryhandle(eachItem)}><i class="bi bi-pencil-square"></i></button>
+
                         {/* </div> */}
                       </td>
 
@@ -584,6 +666,52 @@ function CategoryCreate() {
             </div>
           )}
         </div>
+
+        {isOpenPopupEditCategory && (
+        <div className="popup">
+          <div className="popup-content">
+            <div className='headingwalletcontainer'>
+              <h1 className='headingnameWallet'>Status Update</h1>
+            </div>
+            <div className="container-updateStatus">
+
+              <div className='activecontainer buttonStatus'>
+                <input
+                  type="radio"
+                  id="activeEdit"
+                  name="status"
+                  value="true"
+                  checked={updateEditcategorydata.is_active}
+                  onChange={handleRadioEditData}
+                  className="radioElement"
+
+                />
+                <label htmlFor="activeEdit" className='inputelement'>Active</label>
+              </div>
+
+              <div className='leftRadioButton buttonStatus'>
+
+                <input
+                  type="radio"
+                  id="inactiveEdit"
+                  name="status"
+                  value="false"
+                  checked={!updateEditcategorydata.is_active}
+                  onChange={handleRadioEditData}
+                  className="radioElement"
+
+                />
+                <label htmlFor="inactiveEdit" className='inputelement' >Inactive</label>
+              </div>
+            </div>
+
+            <div className='containerButton'>
+              <button className='submitbutton' onClick={()=>handlePopupCategoryEditSubmit(updateEditcategorydata)}>Submit</button>
+              <button onClick={closePopup} className='closeButton'>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );

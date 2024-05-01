@@ -65,14 +65,35 @@ const Navbar = () => {
         </div>
         </Link>
 
-        <Link to='/Employee'>
+        {/* <Link to='/Employee'>
 
         <div className="p-1.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
 
           <i class="bi bi-person-workspace"></i>
             <span className="text-[15px] ml-4 text-gray-200 font-bold">Employee</span>
         </div>
-        </Link>
+        </Link> */}
+
+
+        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white" onClick={toggleEmployee}>
+          <i class="bi bi-trophy-fill"></i>
+          <div className="flex justify-between w-full items-center">
+            <span className="text-[15px] ml-4 text-gray-200 font-bold">Employees</span>
+            <span className={`text-sm ${Employeeopen ? "transform rotate-180" : ""}`} id="arrow">
+              <i className="bi bi-chevron-down" ></i>
+            </span>
+          </div>
+        </div>
+
+        <div className={`text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold ${Employeeopen ? "" : "hidden"}`} id="submenu">
+          {/* leaderboard */}
+          <Link to='/EmployeeDetails'>
+            <h1 className="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">EmployeesDetails</h1>
+          </Link>
+
+          {/* <h1 className="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">Monthly</h1> */}
+          {/* <h1 className="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">Daily</h1> */}
+        </div>
 
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white" onClick={toggleLeaderBoard}>
           <i class="bi bi-trophy-fill"></i>

@@ -6,11 +6,11 @@ import HomePage from './components/Home';
 import Leaderboard from './components/LeaderBoard';
 import Users from './components/Users';
 import ContestsPage from './components/Contests';
-import EditEmployee from './components/EditEmployee';
 import CategoryCreate from './components/Category';
 import EmployeePage from './components/EmployeePage';
 import Marquee from "react-fast-marquee";
 import QuestionsCategory from './components/Questions';
+
 
 
 
@@ -28,8 +28,9 @@ function App() {
           <Route exact path="/Questions" component={QuestionsCategory}/>
 
           <Route exact path="/Contests" component={ContestsPage}/>
-          <Route exacr path="/Edit" component={EditEmployee}/>
-          <Route exacr path="/Employee" component={EmployeePage}/>
+          {/* <Route exacr path="/Edit" component={EditEmployee}/> */}
+          <Route exacr path="/EmployeeDetails" component={EmployeePage}/>
+
 
           {/* EmployeePage */}
 

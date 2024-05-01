@@ -11,28 +11,42 @@
     flex-direction: column;
 }
 
-.navElement{
+/* .navElement{
     width:400px;
+} */
+
+.heading-container-Question{
+    display: flex;
+    justify-content: center;
 }
 
 .Quizheading{
     font-size: 30px;;
     text-align: center;
     font-weight: 600;
+    width:300px;
     color: #73879C;
-    margin-left: 550px;
+    /* margin-left: 550px; */
+    margin-bottom: 20px;
+
     /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+
+.import-and-Question-container{
+    display: flex;
+}
 
 
 .QuestionContainer{
     /* margin-left: 300px;; */
     display: flex;
     flex-direction: column;
+    margin-right: 40px;
     /* width:850px; */
 }
+
 
 
 
@@ -175,7 +189,20 @@
 .importQuestions{
     display: flex;
     flex-direction: column;
+
 }
+
+/* @media screen and () {
+    
+} */
+
+/* @media screen and (min-width: 1024px){
+    .importQuestions{
+        display: flex;
+        flex-direction: column;
+        width:200px;
+    }
+} */
 
 .importQsheading{
    margin-top: 70px;
@@ -196,7 +223,8 @@
 }
 .container-right-Element{
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    flex-direction: column;
     background-color:#000000;
     border-radius: 15px;
     padding: 30px;
@@ -215,3 +243,4 @@
 .text-button{
     color:#73879C;
 }
+
