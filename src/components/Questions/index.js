@@ -226,7 +226,7 @@ function QuestionsCategory() {
             if (!response.ok) {
                 throw new Error('Failed to create entry');
             }
-            // window.location.reload(false);
+            window.location.reload(false);
 
             // If successful, you can handle the response here
             console.log('successfully Category');

@@ -398,6 +398,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
 
   };
 
+///get method 
 
   useEffect(() => {
     fetch('https://freakapp.pythonanywhere.com/category/')
@@ -410,6 +411,10 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
         console.log(err.message);
       });
   }, []);
+
+
+
+  
 
   const handleFileChange = (event) => {
     const imageData = event.target.files[0];
@@ -671,7 +676,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
         <div className="popup">
           <div className="popup-content">
             <div className='headingwalletcontainer'>
-              <h1 className='headingnameWallet'>Status Update</h1>
+              <h1 className='headingnameWallet' style={{color:ColorCode.borderColor}}>Status Update</h1>
             </div>
             <div className="container-updateStatus">
 
@@ -686,7 +691,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                   className="radioElement"
 
                 />
-                <label htmlFor="activeEdit" className='inputelement'>Active</label>
+                <label htmlFor="activeEdit" style={{color:ColorCode.textColor}} className='inputelement'>Active</label>
               </div>
 
               <div className='leftRadioButton buttonStatus'>
@@ -701,7 +706,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                   className="radioElement"
 
                 />
-                <label htmlFor="inactiveEdit" className='inputelement' >Inactive</label>
+                <label htmlFor="inactiveEdit" style={{color:ColorCode.textColor}} className='inputelement' >Inactive</label>
               </div>
             </div>
 

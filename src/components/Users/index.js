@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import './index.css';
+import { ColorCode } from '../ColorCode';
 
 const products = [
   { id: 1, profile: 'https://lh3.googleusercontent.com/a/ACg8ocK7DKQVBEkSyecX1KW8DIsZayYQcIiCU6Hj7vuxwwJX3bcSCA=s96-c', name: 'Nani', email: 'nani@gmail.com', mobileno: '********', color: 'Silver', category: 'Laptop', price: '$2999', RegisterDate: '15-Jul-2020 01:00 AM', state: 'Active', stateColor: 'orange' },
@@ -217,15 +218,15 @@ function Users() {
         <div className="popup">
           <div className="popup-content">
             <div className='headingwalletcontainer'>
-              <h1 className='headingnameWallet'>Wallet</h1>
+              <h1 className='headingnameWallet' style={{color:ColorCode.borderColor}}>Wallet</h1>
             </div>
             <div className='inputContainerbg'>
               <div className='inputContainer'>
-                <h2 className='addheading'>Add Coins</h2>
+                <h2 className='addheading' style={{color:ColorCode.textColor}}>Add Coins</h2>
                 <input type="text" className='inputText' />
               </div>
               <div className='inputContainer'>
-                <h2 className='addheading'>Add Cash</h2>
+                <h2 className='addheading' style={{color:ColorCode.textColor}}>Add Cash</h2>
                 <input type="text" className='inputText' />
               </div>
 
@@ -242,7 +243,7 @@ function Users() {
         <div className="popup">
           <div className="popup-content">
             <div className='headingwalletcontainer'>
-              <h1 className='headingnameWallet'>Status Update</h1>
+              <h1 className='headingnameWallet' style={{color:ColorCode.borderColor}}>Status Update</h1>
             </div>
             <div className="container-updateStatus">
 
@@ -257,7 +258,7 @@ function Users() {
                   className="radioElement"
 
                 />
-                <label htmlFor="active" className='inputelement'>Active</label>
+                <label htmlFor="active" className='inputelement' style={{color:ColorCode.textColor}}>Active</label>
               </div>
 
               <div className='leftRadioButton buttonStatus'>
@@ -272,7 +273,7 @@ function Users() {
                   className="radioElement"
 
                 />
-                <label htmlFor="inactive" className='inputelement'>Inactive</label>
+                <label htmlFor="inactive" className='inputelement' style={{color:ColorCode.textColor}}>Inactive</label>
               </div>
             </div>
 
