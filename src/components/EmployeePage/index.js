@@ -63,9 +63,11 @@ const colorHead = '#ff7618';
 
 
 function EmployeePage() {
-  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isPopupOpenEmployeeadd, setPopupOpenEmployeeadd] = useState(false);
   const [isOpenPopupEditEmployee, setisOpenPopupEditEmpolyee] = useState(false)
   const [getEmpolyeeDetails, setgetEmpolyeeDetails] = useState([])
+  const [rolegettheData, setgetroleData] = useState([])
+
   useEffect(() => {
     fetch('https://freakapp.pythonanywhere.com/employee/role')
       .then((response) => response.json())
@@ -95,33 +97,37 @@ function EmployeePage() {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(7);
-  const totalPages = Math.ceil(getEmpolyeeDetails.length / itemsPerPage);
+  const [itemsPerPage] = useState(5);
+  const totalPages = Math.ceil(rolegettheData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = getEmpolyeeDetails.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = rolegettheData.slice(indexOfFirstItem, indexOfLastItem);
   const [updateEditEmpolyeedata, setupdateEditEmpolyeedata] = useState({})
   const [openroleEmpolyee, setopenRoleEmpolyee] = useState(false)
   const [rolename, setrolename] = useState('')
-  const [rolegettheData, setgetroleData] = useState([])
   const [openmodelroleEdit, setmodelRoleEdit] = useState(false)
   const [passthedataRoleEdit, setpassdataEditRole] = useState({})
   const [nameroleinput, setrolenameEidt] = useState('')
 
-  const [NameEmpolyee,setNameEmpolyee]=useState('')
-  const [roleselectItem,setRoleSelectEmpolyee]=useState('')
-  const [getEmailName,setChangeEmailName]=useState('')
-  const [getDateOfBirth,setChangeDateOfBirth]=useState('')
-  const [getJoinOfDate,setChangeJoinOfDate]=useState('')
+  const [NameEmpolyee, setNameEmpolyee] = useState('')
+  const [roleselectItem, setRoleSelectEmpolyee] = useState('')
+  const [getEmailName, setChangeEmailName] = useState('')
+  const [getDateOfBirth, setChangeDateOfBirth] = useState('')
+  const [getJoinOfDate, setChangeJoinOfDate] = useState('')
 
-  const [updateEmailinputEmployee,setChangeUpdateEmailEmployee]=useState('')
+  const [updateEmailinputEmployee, setChangeUpdateEmailEmployee] = useState('')
 
 
   console.log(nameroleinput, 'editvalue')
   console.log(passthedataRoleEdit.name, 'editrolevalue')
 
- 
 
+  const [currentPageEmployee, setCurrentPageEmployee] = useState(1);
+  const [itemsPerPageEmployee] = useState(5);
+  const totalPagesEmployee = Math.ceil(getEmpolyeeDetails.length / itemsPerPageEmployee);
+  const indexOfLastItemEmployee = currentPageEmployee * itemsPerPageEmployee;
+  const indexOfFirstItemEmployee = indexOfLastItemEmployee - itemsPerPageEmployee;
+  const currentItemsEmployee = getEmpolyeeDetails.slice(indexOfFirstItemEmployee, indexOfLastItemEmployee);
 
 
   const PopupEditEmpolyeehandle = (eachItem) => {
@@ -139,13 +145,13 @@ function EmployeePage() {
 
 
   const openClickAddEmpolyee = () => {
-    setPopupOpen(true);
+    setPopupOpenEmployeeadd(true);
   }
 
 
 
   const closePopup = () => {
-    setPopupOpen(false);
+    setPopupOpenEmployeeadd(false);
     setisOpenPopupEditEmpolyee(false)
     setopenRoleEmpolyee(false)
     setmodelRoleEdit(false)
@@ -194,6 +200,10 @@ function EmployeePage() {
     } catch (error) {
       console.error('Error:', error);
     }
+  }
+
+  const handlePageChangeEmployee=(page)=>{
+    setCurrentPageEmployee(page)
   }
 
 
@@ -299,37 +309,37 @@ function EmployeePage() {
   }
 
   const handleSelectRole = (e) => {
-      setRoleSelectEmpolyee(e.target.value)
+    setRoleSelectEmpolyee(e.target.value)
   }
 
-  const ChangeNameEmpolyee=(e)=>{
-  setNameEmpolyee(e.target.value)
+  const ChangeNameEmpolyee = (e) => {
+    setNameEmpolyee(e.target.value)
   }
 
-  const inputChangeEmail=(e)=>{
+  const inputChangeEmail = (e) => {
     setChangeEmailName(e.target.value)
   }
 
-  const inputChangeDateOfBirth=(e)=>{
+  const inputChangeDateOfBirth = (e) => {
     setChangeDateOfBirth(e.target.value)
   }
 
 
-  const inputChangeJoinOfDate=(e)=>{
-      setChangeJoinOfDate(e.target.value)
+  const inputChangeJoinOfDate = (e) => {
+    setChangeJoinOfDate(e.target.value)
   }
 
-  const inputChangeEditEmailEmployee=(e)=>{
+  const inputChangeEditEmailEmployee = (e) => {
     setChangeUpdateEmailEmployee(e.target.value)
   }
 
-  const handleSubmitEmpolyee=async()=>{
+  const handleSubmitEmpolyee = async () => {
     const formEmployeData = {
       name: NameEmpolyee,
-        email: getEmailName,
-        date_of_birth: getDateOfBirth,
-        date_of_joining: getJoinOfDate,
-        role: roleselectItem
+      email: getEmailName,
+      date_of_birth: getDateOfBirth,
+      date_of_joining: getJoinOfDate,
+      role: roleselectItem
 
     }
     try {
@@ -387,133 +397,10 @@ function EmployeePage() {
             <button style={{ color: ColorCode.textColor }}>Add Empolyee</button>
           </button>
         </div>
-        {isPopupOpen && (
-          <div className="popup">
-            <div className="popup-content">
-              <div className='headingwalletcontainer'>
-                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Add Empolyee Details</h1>
-              </div>
-              <div className='inputContainerbg'>
-                <div className='inputContainer'>
-                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
-                  <input type="text" className='inputTextElement' onChange={ChangeNameEmpolyee} placeholder='Enter the Name'/>
-                </div>
-
-                {/* <div className='inputContainer'>
-                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
-                  <input type="text" className='inputText' />
-                </div> */}
-                <div className='inputContainer'>
-                <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
-
-                <select className='selectRoleItem inputTextElement' onChange={handleSelectRole}>
-                  <option>Select Role</option>
-
-                  {
-                    rolegettheData.map((each) => (
-                      <option>{each.id}</option>
-
-                    ))
-                  }
-                </select>
-                </div>
-
-                <div className='inputContainer'>
-                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
-                  <input type="text" className='inputTextElement'onChange={inputChangeEmail} placeholder='Enter the Email'/>
-                </div>
-                <div className='inputContainer'>
-                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
-                  <input type="text" className='inputTextElement' onChange={inputChangeDateOfBirth} placeholder='YYYY-MM-DD'/>
-                </div>
-                <div className='inputContainer'>
-                  <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
-                  <input type="text" className='inputTextElement'  onChange={inputChangeJoinOfDate} placeholder='YYYY-MM-DD' />
-                </div>
-              </div>
-              <div className='containerButton'>
-                <button className='submitbutton' onClick={handleSubmitEmpolyee}>Submit</button>
-                <button onClick={closePopup} className='closeButton'>Close</button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {openroleEmpolyee && (
-          <div className="popup ">
-            <div className="popup-content">
-              <div className='headingwalletcontainer'>
-                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Employee Role</h1>
-              </div>
-              <div className='inputContainerbg'>
 
 
-                <div className='inputContainer'>
-                  <h2 className='addheadingrole' style={{ color: ColorCode.textColor }}>Role Name</h2>
-                  <input type="text" className='inputText' onChange={NameChangeRoleEmpolyee} />
-                </div>
+        {/* table empolyeee */}
 
-              </div>
-              <div className='containerButton'>
-                <button className='submitbutton' onClick={onClickSubmitnameRole}>Submit</button>
-                <button onClick={closePopup} className='closeButton'>Close</button>
-              </div>
-
-              <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
-                <table class="w-full border-collapse bg-black text-left text-sm text-gray-500">
-                  <thead class="bg-black-50">
-                    <tr>
-                      <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>id</th>
-                      <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Empolyee Role</th>
-                      <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Role Action</th>
-
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-white-100 border-t border-white-100">
-                    {rolegettheData.map((eachItem) => {
-                      return (
-                        <tr class="hover:bg-gray-50">
-                          <td class="px-6 py-4" style={{ color: colorCode }}>{eachItem.id}</td>
-                          <td class="px-6 py-4" style={{ color: colorCode }}>{eachItem.name}</td>
-                          <td class="px-6 py-4" style={{ color: colorCode }}>
-
-                            <button className='deletebutton' onClick={() => onClickRoleDelete(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
-                            <button className='deletebutton' onClick={() => onClickEditRole(eachItem)}><i class="bi bi-pencil-square"></i></button>
-
-                          </td>
-
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {openmodelroleEdit && (
-          <div className="popup">
-            <div className="popup-content">
-              <div className='headingwalletcontainer'>
-                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Update Role Empolyee</h1>
-              </div>
-              <div className='inputContainerbg'>
-
-
-                <div className='inputContainer'>
-                  <h2 className='addheading' style={{ color: ColorCode.textColor }} >Name Role</h2>
-                  <input type="text" className='inputText' onChange={nameChangeEditroleinput} value={nameroleinput} />
-                </div>
-
-              </div>
-              <div className='containerButton'>
-                <button className='submitbutton' onClick={() => handleEditRoleSubmit(passthedataRoleEdit.id)}>Submit</button>
-                <button onClick={closePopup} className='closeButton'>Close</button>
-              </div>
-            </div>
-          </div>
-        )}
 
         <div className='container-table-empolyee-list'>
           <h1 style={{ color: ColorCode.textColor }} className='employeeheading'>Empolyee list </h1>
@@ -536,7 +423,7 @@ function EmployeePage() {
                 </tr>
               </thead>
               <tbody class="divide-y divide-white-100 border-t border-white-100">
-                {currentItems.map((eachItem) => {
+                {currentItemsEmployee.map((eachItem) => {
                   return (
                     <tr class="hover:bg-gray-50">
                       <td class="px-6 py-4" style={{ color: colorCode }}>{eachItem.name}</td>
@@ -571,30 +458,32 @@ function EmployeePage() {
               </tbody>
             </table>
           </div>
-          {totalPages > 1 && (
+          {totalPagesEmployee > 1 && (
             <div className="flex justify-center mt-4">
               <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-3 py-1 mr-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                onClick={() => handlePageChangeEmployee(currentPageEmployee - 1)}
+                disabled={currentPageEmployee === 1}
+                className="px-3 py-1 mr-2 bg-black-200 text-gray-700 rounded-md hover:bg-gray-300 buttonBorder"
+                style={{ color: ColorCode.textColor }}
+
               >
                 Previous
               </button>
-              {Array.from({ length: totalPages > 5 ? 5 : totalPages }, (_, i) => {
+              {Array.from({ length: totalPagesEmployee > 5 ? 5 : totalPagesEmployee }, (_, i) => {
                 let pageNumber;
-                if (totalPages <= 5 || currentPage <= 3) {
+                if (totalPagesEmployee <= 5 || currentPageEmployee <= 3) {
                   pageNumber = i + 1;
-                } else if (currentPage > totalPages - 2) {
-                  pageNumber = totalPages - 4 + i;
+                } else if (currentPageEmployee > totalPagesEmployee - 2) {
+                  pageNumber = totalPagesEmployee - 4 + i;
                 } else {
-                  pageNumber = currentPage - 2 + i;
+                  pageNumber = currentPageEmployee - 2 + i;
                 }
                 return (
                   <button
                     key={pageNumber}
-                    onClick={() => handlePageChange(pageNumber)}
-                    className={`px-3 py-1 mr-2 rounded-md ${currentPage === pageNumber ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-                    style={{color:ColorCode.textColor}}
+                    onClick={() => handlePageChangeEmployee(pageNumber)}
+                    className={`px-3 py-1 mr-2 rounded-md ${currentPageEmployee === pageNumber ? 'bg-gray-500 text-white' : 'bg-black-200 text-gray-700 hover:bg-gray-300 buttonBorder'}`}
+                    style={{ color: ColorCode.textColor }}
 
                   >
                     {pageNumber}
@@ -602,10 +491,10 @@ function EmployeePage() {
                 );
               })}
               <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-3 py-1 ml-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 "
-                style={{color:ColorCode.textColor}}
+                onClick={() => handlePageChangeEmployee(currentPageEmployee + 1)}
+                disabled={currentPageEmployee === totalPagesEmployee}
+                className="px-3 py-1 ml-2 bg-black-200 text-gray-700 rounded-md hover:bg-gray-300 buttonBorder"
+                style={{ color: ColorCode.textColor }}
               >
                 Next
               </button>
@@ -613,57 +502,247 @@ function EmployeePage() {
           )}
         </div>
 
+        {/* add Employee Section */}
+
+        {isPopupOpenEmployeeadd && (
+          <div className="popup">
+            <div className="popup-content">
+              <div className='headingwalletcontainer'>
+                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Add Empolyee Details</h1>
+              </div>
+              <div className='inputContainerbg'>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
+                  <input type="text" className='inputTextElement' onChange={ChangeNameEmpolyee} placeholder='Enter the Name' />
+                </div>
+
+                {/* <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
+                  <input type="text" className='inputText' />
+                </div> */}
+                <div className='inputContainer'>
+                  <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
+
+                  <select className='selectRoleItem inputTextElement' onChange={handleSelectRole}>
+                    <option>Select Role</option>
+
+                    {
+                      rolegettheData.map((each) => (
+                        <option value={each.id}>{each.name}</option>
+                       
+
+
+                      ))
+                    }
+                  </select>
+                </div>
+
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
+                  <input type="text" className='inputTextElement' onChange={inputChangeEmail} placeholder='Enter the Email' />
+                </div>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
+                  <input type="text" className='inputTextElement' onChange={inputChangeDateOfBirth} placeholder='YYYY-MM-DD' />
+                </div>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
+                  <input type="text" className='inputTextElement' onChange={inputChangeJoinOfDate} placeholder='YYYY-MM-DD' />
+                </div>
+              </div>
+              <div className='containerButton'>
+                <button className='submitbutton' onClick={handleSubmitEmpolyee}>Submit</button>
+                <button onClick={closePopup} className='closeButton'>Close</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Edit Employee Section */}
+
         {isOpenPopupEditEmployee && (
           <div className="popup">
-          <div className="popup-content">
-            <div className='headingwalletcontainer'>
-              <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Update Empolyee Details</h1>
-            </div>
-            <div className='inputContainerbg'>
-              <div className='inputContainer'>
-                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
-                <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.name} placeholder='Enter the Name'/>
+            <div className="popup-content">
+              <div className='headingwalletcontainer'>
+                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Update Empolyee Details</h1>
               </div>
+              <div className='inputContainerbg'>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
+                  <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.name} placeholder='Enter the Name' />
+                </div>
 
-              {/* <div className='inputContainer'>
+                {/* <div className='inputContainer'>
                 <h2 className='addheading' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
                 <input type="text" className='inputText' />
               </div> */}
-              <div className='inputContainer'>
-              <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
+                <div className='inputContainer'>
+                  <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
 
-              <select className='selectRoleItem inputTextElement' value={updateEditEmpolyeedata.role}>
-                <option>Select Role</option>
+                  <select className='selectRoleItem inputTextElement' value={updateEditEmpolyeedata.role}>
+                    <option>Select Role</option>
 
-                {
-                  rolegettheData.map((each) => (
-                    <option>{each.id}</option>
+                    {
+                      rolegettheData.map((each) => (
+                        <option>{each.id}</option>
 
-                  ))
-                }
-              </select>
-              </div>
+                      ))
+                    }
+                  </select>
+                </div>
 
-              <div className='inputContainer'>
-                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
-                <input type="text" className='inputTextElement'onChange={inputChangeEditEmailEmployee} value={updateEmailinputEmployee} placeholder='Enter the Email'/>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
+                  <input type="text" className='inputTextElement' onChange={inputChangeEditEmailEmployee} value={updateEmailinputEmployee} placeholder='Enter the Email' />
+                </div>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
+                  <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.date_of_birth} placeholder='YYYY-MM-DD' />
+                </div>
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
+                  <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.date_of_joining} placeholder='YYYY-MM-DD' />
+                </div>
               </div>
-              <div className='inputContainer'>
-                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
-                <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.date_of_birth} placeholder='YYYY-MM-DD'/>
+              <div className='containerButton'>
+                <button className='submitbutton' onClick={() => handlePopupEmpolyeeEditSubmit(updateEditEmpolyeedata.id)}>Submit</button>
+                <button onClick={closePopup} className='closeButton'>Close</button>
               </div>
-              <div className='inputContainer'>
-                <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
-                <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.date_of_joining}   placeholder='YYYY-MM-DD' />
-              </div>
-            </div>
-            <div className='containerButton'>
-              <button className='submitbutton' onClick={()=>handlePopupEmpolyeeEditSubmit(updateEditEmpolyeedata.id)}>Submit</button>
-              <button onClick={closePopup} className='closeButton'>Close</button>
             </div>
           </div>
-        </div>
         )}
+
+
+
+        {/* add role get role */}
+
+        {openroleEmpolyee && (
+          <div className="popup ">
+            <div className="popup-content">
+              <div className='headingwalletcontainer'>
+                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Employee Role</h1>
+              </div>
+              <div className='inputContainerbg'>
+
+
+                <div className='inputContainer'>
+                  <h2 className='addheadingrole' style={{ color: ColorCode.textColor }}>Role Name</h2>
+                  <input type="text" className='inputText' onChange={NameChangeRoleEmpolyee} />
+                </div>
+
+              </div>
+              <div className='containerButton'>
+                <button className='submitbutton' onClick={onClickSubmitnameRole}>Submit</button>
+                <button onClick={closePopup} className='closeButton'>Close</button>
+              </div>
+
+              <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+                <table class="w-full border-collapse bg-black text-left text-sm text-gray-500">
+                  <thead class="bg-black-50">
+                    <tr>
+                      <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>id</th>
+                      <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Empolyee Role</th>
+                      <th scope="col" class="px-6 py-4 font-medium " style={{ color: colorHead }}>Role Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-white-100 border-t border-white-100">
+                    {currentItems.map((eachItem) => {
+                      return (
+                        <tr class="hover:bg-gray-50">
+                          <td class="px-6 py-4" style={{ color: colorCode }}>{eachItem.id}</td>
+                          <td class="px-6 py-4" style={{ color: colorCode }}>{eachItem.name}</td>
+                          <td class="px-6 py-4" style={{ color: colorCode }}>
+
+                            <button className='deletebutton' onClick={() => onClickRoleDelete(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
+                            <button className='deletebutton' onClick={() => onClickEditRole(eachItem)}><i class="bi bi-pencil-square"></i></button>
+
+                          </td>
+
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+
+              {totalPages > 1 && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-3 py-1 mr-2 bg-black-200 text-gray-700 rounded-md hover:bg-gray-300 buttonBorder"
+                    style={{ color: ColorCode.borderColor }}
+
+                  >
+                    Previous
+                  </button>
+                  {Array.from({ length: totalPages > 5 ? 5 : totalPages }, (_, i) => {
+                    let pageNumber;
+                    if (totalPages <= 5 || currentPage <= 3) {
+                      pageNumber = i + 1;
+                    } else if (currentPage > totalPages - 2) {
+                      pageNumber = totalPages - 4 + i;
+                    } else {
+                      pageNumber = currentPage - 2 + i;
+                    }
+                    return (
+                      <button
+                        key={pageNumber}
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`px-3 py-1 mr-2 rounded-md ${currentPage === pageNumber ? 'bg-gray-500 text-white' : 'bg-black-200 text-gray-700 hover:bg-gray-300 buttonBorder'}`}
+                        style={{ color: ColorCode.borderColor }}
+
+                      >
+                        {pageNumber}
+                      </button>
+                    );
+                  })}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-1 ml-2 bg-black-200 text-gray-700 rounded-md hover:bg-gray-300 buttonBorder"
+                    style={{ color: ColorCode.borderColor}}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+
+
+
+            </div>
+          </div>
+        )}
+
+        {/* edit role */}
+        {openmodelroleEdit && (
+          <div className="popup">
+            <div className="popup-content">
+              <div className='headingwalletcontainer'>
+                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Update Role Empolyee</h1>
+              </div>
+              <div className='inputContainerbg'>
+
+
+                <div className='inputContainer'>
+                  <h2 className='addheading' style={{ color: ColorCode.textColor }} >Name Role</h2>
+                  <input type="text" className='inputText' onChange={nameChangeEditroleinput} value={nameroleinput} />
+                </div>
+
+              </div>
+              <div className='containerButton'>
+                <button className='submitbutton' onClick={() => handleEditRoleSubmit(passthedataRoleEdit.id)}>Submit</button>
+                <button onClick={closePopup} className='closeButton'>Close</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+
+
+
 
       </div>
     </div>

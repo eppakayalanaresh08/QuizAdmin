@@ -407,7 +407,7 @@ function QuestionsCategory() {
                                     required
                                 />
                                 <p className='nameElementQuestions' style={{ color: ColorCode.textColor }}>{QuestionType} Type Question </p>
-                                <input type="file" onChange={handleFileChange} accept="image/*" className='textInputnameImage' />
+                                <input type="file" onChange={handleFileChange} accept="image/*" className='textInputnameImage' style={{color:ColorCode.textColor}} />
                             </div>
                         )
                     }
