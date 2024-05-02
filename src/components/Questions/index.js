@@ -327,9 +327,9 @@ function QuestionsCategory() {
            
 
             <div className='container-right-Element'>
-            <div className='heading-container-Question'>
+               <div className='heading-container-Question'>
             <h1 className='Quizheading' style={{ color: ColorCode.borderColor }}>Questions for Quiz</h1>
-            </div>
+                </div>
             <div class='import-and-Question-container'>
                 <div className='QuestionContainer'>
                     <div className=''>
@@ -598,7 +598,7 @@ function QuestionsCategory() {
                 <div className='importQuestions'>
                     <h1 className='importQsheading' style={{ color: ColorCode.textColor }}>Import Questions</h1>
                     <p className='csvQuestions' style={{ color: ColorCode.textColor }}>CSV Questions file</p>
-                    <input type="file" onChange={handleFileChange} disabled={true} accept="*/*" className='textInputnameImage' />
+                    <input type="file" onChange={handleFileChange} disabled={true} accept="*/*" className='textInputnameImageCsv' />
                     <div className='buttoncontainerQuiz'>
                         <button type="button"  disabled={true} class="text-button text-gray-900 hover:text-white border border-orange-1200 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick} style={{ color: ColorCode.textColor }}>Upload CSV file</button>
                     </div>
