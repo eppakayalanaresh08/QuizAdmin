@@ -441,7 +441,7 @@ function EmployeePage() {
 
         {openroleEmpolyee && (
           <div className="popup ">
-            <div className="popup-content container-popup">
+            <div className="popup-content">
               <div className='headingwalletcontainer'>
                 <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Employee Role</h1>
               </div>
