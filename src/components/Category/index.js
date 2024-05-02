@@ -473,7 +473,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
       if (!response.ok) {
         throw new Error('Failed to create entry');
       }
-
+      window.location.reload(false);
       console.log('Category created successfully');
     } catch (error) {
       console.error('Error:', error);
