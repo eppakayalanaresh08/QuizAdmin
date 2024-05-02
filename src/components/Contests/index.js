@@ -190,7 +190,10 @@ function ContestsPage() {
             </div>
 
             <div className='right-container-contest'>
+            <h1 className='nameContestpending' >The contest part is currently in progress. please refrain from providing details.</h1>
+
                 <div className='container-right-Element-contest'>
+
                     <h1 className='nameContest' style={{ color: ColorCode.textColor }}>Create a Contest</h1>
                     <div className='container-input-contest'>
                         <div className='eachInputElement'>

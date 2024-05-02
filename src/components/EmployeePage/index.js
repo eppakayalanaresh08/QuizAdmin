@@ -5,58 +5,58 @@ import { ColorCode } from '../ColorCode'
 import './index.css'
 
 
-const Emopleelist = [
-  {
-    id: 1,
+// const Emopleelist = [
+//   {
+//     id: 1,
 
-    name: 'Naresh',
-    email: '@gmail.com',
-    mobileNo: 8346876776,
-    role: 'Front-end',
-    startDate: '2002-09-02',
-    EndDate: '2002-09-02'
-  },
-  {
-    id: 2,
+//     name: 'Naresh',
+//     email: '@gmail.com',
+//     mobileNo: 8346876776,
+//     role: 'Front-end',
+//     startDate: '2002-09-02',
+//     EndDate: '2002-09-02'
+//   },
+//   {
+//     id: 2,
 
-    name: 'Rakesh',
-    email: '@gmail.com',
-    mobileNo: 565465468346,
-    role: 'Front-end',
-    startDate: '2007-09-02',
-    EndDate: '2020-10-02'
-  },
-  {
-    id: 3,
+//     name: 'Rakesh',
+//     email: '@gmail.com',
+//     mobileNo: 565465468346,
+//     role: 'Front-end',
+//     startDate: '2007-09-02',
+//     EndDate: '2020-10-02'
+//   },
+//   {
+//     id: 3,
 
-    name: 'Lokesh',
-    email: '@gmail.com',
-    mobileNo: 9767798346,
-    role: 'Front-end',
-    startDate: '2006-09-02',
-    EndDate: '2027-09-02'
-  },
-  {
-    id: 4,
+//     name: 'Lokesh',
+//     email: '@gmail.com',
+//     mobileNo: 9767798346,
+//     role: 'Front-end',
+//     startDate: '2006-09-02',
+//     EndDate: '2027-09-02'
+//   },
+//   {
+//     id: 4,
 
-    name: 'Dinesh',
-    email: '@gmail.com',
-    mobileNo: 987878346,
-    role: 'Front-end',
-    startDate: '2003-08-02',
-    EndDate: '2020-09-09'
-  },
-  {
-    id: 5,
+//     name: 'Dinesh',
+//     email: '@gmail.com',
+//     mobileNo: 987878346,
+//     role: 'Front-end',
+//     startDate: '2003-08-02',
+//     EndDate: '2020-09-09'
+//   },
+//   {
+//     id: 5,
 
-    name: 'Avinash',
-    email: '@gmail.com',
-    mobileNo: 9879788346,
-    role: 'Front-end',
-    startDate: '2001-09-02',
-    EndDate: '2023-09-02'
-  }
-]
+//     name: 'Avinash',
+//     email: '@gmail.com',
+//     mobileNo: 9879788346,
+//     role: 'Front-end',
+//     startDate: '2001-09-02',
+//     EndDate: '2023-09-02'
+//   }
+// ]
 
 const colorCode = '#eb9175';
 const colorHead = '#ff7618';
@@ -65,32 +65,7 @@ const colorHead = '#ff7618';
 function EmployeePage() {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isOpenPopupEditEmployee, setisOpenPopupEditEmpolyee] = useState(false)
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(7);
-  const totalPages = Math.ceil(Emopleelist.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = Emopleelist.slice(indexOfFirstItem, indexOfLastItem);
-  const [updateEditEmpolyeedata, setupdateEditEmpolyeedata] = useState({})
-  const [openroleEmpolyee, setopenRoleEmpolyee] = useState(false)
-  const [rolename, setrolename] = useState('')
-  const [rolegettheData, setgetroleData] = useState([])
-  const [openmodelroleEdit, setmodelRoleEdit] = useState(false)
-  const [passthedataRoleEdit, setpassdataEditRole] = useState({})
-  const [nameroleinput, setrolenameEidt] = useState('')
   const [getEmpolyeeDetails, setgetEmpolyeeDetails] = useState([])
-
-  const [NameEmpolyee,setNameEmpolyee]=useState('')
-  const [roleselectItem,setRoleSelectEmpolyee]=useState('')
-  const [getEmailName,setChangeEmailName]=useState('')
-  const [getDateOfBirth,setChangeDateOfBirth]=useState('')
-  const [getJoinOfDate,setChangeJoinOfDate]=useState('')
-
-
-  console.log(nameroleinput, 'editvalue')
-  console.log(passthedataRoleEdit.name, 'editrolevalue')
-
   useEffect(() => {
     fetch('https://freakapp.pythonanywhere.com/employee/role')
       .then((response) => response.json())
@@ -119,6 +94,35 @@ function EmployeePage() {
   }, []);
 
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(7);
+  const totalPages = Math.ceil(getEmpolyeeDetails.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = getEmpolyeeDetails.slice(indexOfFirstItem, indexOfLastItem);
+  const [updateEditEmpolyeedata, setupdateEditEmpolyeedata] = useState({})
+  const [openroleEmpolyee, setopenRoleEmpolyee] = useState(false)
+  const [rolename, setrolename] = useState('')
+  const [rolegettheData, setgetroleData] = useState([])
+  const [openmodelroleEdit, setmodelRoleEdit] = useState(false)
+  const [passthedataRoleEdit, setpassdataEditRole] = useState({})
+  const [nameroleinput, setrolenameEidt] = useState('')
+
+  const [NameEmpolyee,setNameEmpolyee]=useState('')
+  const [roleselectItem,setRoleSelectEmpolyee]=useState('')
+  const [getEmailName,setChangeEmailName]=useState('')
+  const [getDateOfBirth,setChangeDateOfBirth]=useState('')
+  const [getJoinOfDate,setChangeJoinOfDate]=useState('')
+
+  const [updateEmailinputEmployee,setChangeUpdateEmailEmployee]=useState('')
+
+
+  console.log(nameroleinput, 'editvalue')
+  console.log(passthedataRoleEdit.name, 'editrolevalue')
+
+ 
+
+
 
   const PopupEditEmpolyeehandle = (eachItem) => {
 
@@ -126,6 +130,7 @@ function EmployeePage() {
     // console.log(eachItem)
 
     setisOpenPopupEditEmpolyee(true)
+    setChangeUpdateEmailEmployee(eachItem.email)
 
   }
 
@@ -148,9 +153,9 @@ function EmployeePage() {
   };
 
 
-  const OnDeletebutton = async (categoryId) => {
+  const OnDeleteEmployeebutton = async (EmployeeId) => {
     try {
-      const response = await fetch(`https://freakapp.pythonanywhere.com/category/${categoryId}`, {
+      const response = await fetch(`https://freakapp.pythonanywhere.com/employee/${EmployeeId}`, {
         method: 'DELETE'
       });
       console.log(response)
@@ -167,14 +172,14 @@ function EmployeePage() {
     }
   }
 
-  const handlePopupEmpolyeeEditSubmit = async (selectedCategory) => {
+  const handlePopupEmpolyeeEditSubmit = async (EmpolyeeId) => {
     try {
-      const response = await fetch(`https://freakapp.pythonanywhere.com/category/${selectedCategory.id}`, {
+      const response = await fetch(`https://freakapp.pythonanywhere.com/employee/${EmpolyeeId}`, {
         method: 'PATCH', // Use PATCH method for partial updates
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ is_active: updateEditEmpolyeedata.is_active }) // Only send the updated field
+        body: JSON.stringify({ email: updateEmailinputEmployee }) // Only send the updated field
       });
 
       console.log(response)
@@ -314,6 +319,10 @@ function EmployeePage() {
       setChangeJoinOfDate(e.target.value)
   }
 
+  const inputChangeEditEmailEmployee=(e)=>{
+    setChangeUpdateEmailEmployee(e.target.value)
+  }
+
   const handleSubmitEmpolyee=async()=>{
     const formEmployeData = {
       name: NameEmpolyee,
@@ -352,6 +361,9 @@ function EmployeePage() {
 
 
 
+
+
+
   return (
     <div style={{ backgroundColor: ColorCode.bgColor }} className='bg-container'>
       <div className='navbar-container'>
@@ -384,7 +396,7 @@ function EmployeePage() {
               <div className='inputContainerbg'>
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
-                  <input type="text" className='inputText' onChange={ChangeNameEmpolyee} />
+                  <input type="text" className='inputTextElement' onChange={ChangeNameEmpolyee} placeholder='Enter the Name'/>
                 </div>
 
                 {/* <div className='inputContainer'>
@@ -392,9 +404,9 @@ function EmployeePage() {
                   <input type="text" className='inputText' />
                 </div> */}
                 <div className='inputContainer'>
-                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
+                <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
 
-                <select className='selectRoleItem' onChange={handleSelectRole}>
+                <select className='selectRoleItem inputTextElement' onChange={handleSelectRole}>
                   <option>Select Role</option>
 
                   {
@@ -408,15 +420,15 @@ function EmployeePage() {
 
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
-                  <input type="text" className='inputText'onChange={inputChangeEmail} />
+                  <input type="text" className='inputTextElement'onChange={inputChangeEmail} placeholder='Enter the Email'/>
                 </div>
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
-                  <input type="text" className='inputText' onChange={inputChangeDateOfBirth} />
+                  <input type="text" className='inputTextElement' onChange={inputChangeDateOfBirth} placeholder='YYYY-MM-DD'/>
                 </div>
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
-                  <input type="text" className='inputText'  onChange={inputChangeJoinOfDate} />
+                  <input type="text" className='inputTextElement'  onChange={inputChangeJoinOfDate} placeholder='YYYY-MM-DD' />
                 </div>
               </div>
               <div className='containerButton'>
@@ -524,7 +536,7 @@ function EmployeePage() {
                 </tr>
               </thead>
               <tbody class="divide-y divide-white-100 border-t border-white-100">
-                {getEmpolyeeDetails.map((eachItem) => {
+                {currentItems.map((eachItem) => {
                   return (
                     <tr class="hover:bg-gray-50">
                       <td class="px-6 py-4" style={{ color: colorCode }}>{eachItem.name}</td>
@@ -547,7 +559,7 @@ function EmployeePage() {
                       <td class="px-6 py-4" style={{ color: colorCode }}>
                         {/* <div className='Deletebg' >  */}
 
-                        <button className='deleteEmpolyeebutton' onClick={() => OnDeletebutton(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
+                        <button className='deleteEmpolyeebutton' onClick={() => OnDeleteEmployeebutton(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
                         <button className='deleteEmpolyeebutton' onClick={() => PopupEditEmpolyeehandle(eachItem)}><i class="bi bi-pencil-square"></i></button>
 
                         {/* </div> */}
@@ -582,6 +594,8 @@ function EmployeePage() {
                     key={pageNumber}
                     onClick={() => handlePageChange(pageNumber)}
                     className={`px-3 py-1 mr-2 rounded-md ${currentPage === pageNumber ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                    style={{color:ColorCode.textColor}}
+
                   >
                     {pageNumber}
                   </button>
@@ -590,7 +604,8 @@ function EmployeePage() {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1 ml-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                className="px-3 py-1 ml-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 "
+                style={{color:ColorCode.textColor}}
               >
                 Next
               </button>
@@ -600,48 +615,54 @@ function EmployeePage() {
 
         {isOpenPopupEditEmployee && (
           <div className="popup">
-            <div className="popup-content">
-              <div className='headingwalletcontainer'>
-                <h1 className='headingnameWallet'>Status Update</h1>
-              </div>
-              <div className="container-updateStatus">
-
-                <div className='activecontainer buttonStatus'>
-                  {/* <input
-                  type="radio"
-                  id="activeEdit"
-                  name="status"
-                  value="true"
-                  checked={updateEditcategorydata.is_active}
-                  onChange={handleRadioEditData}
-                  className="radioElement"
-
-                /> */}
-                  <label htmlFor="activeEdit" className='inputelement'>Active</label>
-                </div>
-
-                <div className='leftRadioButton buttonStatus'>
-
-                  {/* <input
-                  type="radio"
-                  id="inactiveEdit"
-                  name="status"
-                  value="false"
-                  checked={!updateEditEmpolyeedata.is_active}
-                  onChange={handleRadioEditData}
-                  className="radioElement"
-
-                /> */}
-                  <label htmlFor="inactiveEdit" className='inputelement' >Inactive</label>
-                </div>
+          <div className="popup-content">
+            <div className='headingwalletcontainer'>
+              <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Update Empolyee Details</h1>
+            </div>
+            <div className='inputContainerbg'>
+              <div className='inputContainer'>
+                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
+                <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.name} placeholder='Enter the Name'/>
               </div>
 
-              <div >
-                <button className='submitbutton' onClick={() => handlePopupEmpolyeeEditSubmit(updateEditEmpolyeedata)}>Submit</button>
-                <button onClick={closePopup} className='closeButton'>Close</button>
+              {/* <div className='inputContainer'>
+                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
+                <input type="text" className='inputText' />
+              </div> */}
+              <div className='inputContainer'>
+              <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
+
+              <select className='selectRoleItem inputTextElement' value={updateEditEmpolyeedata.role}>
+                <option>Select Role</option>
+
+                {
+                  rolegettheData.map((each) => (
+                    <option>{each.id}</option>
+
+                  ))
+                }
+              </select>
+              </div>
+
+              <div className='inputContainer'>
+                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
+                <input type="text" className='inputTextElement'onChange={inputChangeEditEmailEmployee} value={updateEmailinputEmployee} placeholder='Enter the Email'/>
+              </div>
+              <div className='inputContainer'>
+                <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
+                <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.date_of_birth} placeholder='YYYY-MM-DD'/>
+              </div>
+              <div className='inputContainer'>
+                <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
+                <input type="text" className='inputTextElement' value={updateEditEmpolyeedata.date_of_joining}   placeholder='YYYY-MM-DD' />
               </div>
             </div>
+            <div className='containerButton'>
+              <button className='submitbutton' onClick={()=>handlePopupEmpolyeeEditSubmit(updateEditEmpolyeedata.id)}>Submit</button>
+              <button onClick={closePopup} className='closeButton'>Close</button>
+            </div>
           </div>
+        </div>
         )}
 
       </div>

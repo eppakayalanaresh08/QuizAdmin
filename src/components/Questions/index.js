@@ -365,8 +365,8 @@ function QuestionsCategory() {
                     <div className='buttonContainer'>
                         <button onClick={handleTextClick} className={showText ? 'selectedbuttonQuestions' : 'noneSelected'}>Text</button>
                         <button onClick={handleMediaImage} className={`${showmedia ? 'selectedbuttonQuestions' : 'noneSelected'} `} >Image</button>
-                        <button onClick={handleMediaVideo} className={`${isvideoupload ? 'selectedbuttonQuestions' : 'noneSelected'} `} >Video</button>
-                        <button onClick={handleMediaAudio} className={`${isAudioUpload ? 'selectedbuttonQuestions' : 'noneSelected'} `} >Audio</button>
+                        <button onClick={handleMediaVideo} disabled={true} className={`${isvideoupload ? 'selectedbuttonQuestions' : 'noneSelected'} `} >Video</button>
+                        <button onClick={handleMediaAudio}  disabled={true} className={`${isAudioUpload ? 'selectedbuttonQuestions' : 'noneSelected'} `} >Audio</button>
 
 
                         {/* <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelected'}>Image</button> */}
@@ -460,7 +460,7 @@ function QuestionsCategory() {
                         <p className='nameElementQuestions' style={{ color: ColorCode.textColor }}>Option Type</p>
                         <div className='buttonContainer'>
                             <button onClick={handleOptionsClick} className={showOptions ? 'selectedbutton' : 'noneSelectedoptiontype'} >Text</button>
-                            <button onClick={handleTrueFalseClick} className={`${showTrueFalse ? 'selectedbutton' : 'noneSelectedoptiontype'}`} >True/False</button>
+                            <button onClick={handleTrueFalseClick} className={`${showTrueFalse ? 'selectedbutton' : 'noneSelectedoptiontype'}`} disabled={true}>True/False</button>
                             <button onClick={handleImageClick} className={showImage ? 'selectedbutton' : 'noneSelectedoptiontype'}>Image</button>
                         </div>
 
@@ -508,19 +508,19 @@ function QuestionsCategory() {
                             <div className='containerOptions'>
                                 <div className='eachOption'>
                                     <p className='nameoptionElement' style={{ color: ColorCode.textColor }}>A</p>
-                                    <input type="file" className='textinputElement' onChange={onhandleImageeOptionA} />
+                                    <input type="file" className='textinputElement'  style={{ color: ColorCode.textColor }}onChange={onhandleImageeOptionA} />
                                 </div>
                                 <div className='eachOption'>
                                     <p className='nameoptionElement' style={{ color: ColorCode.textColor }} >B</p>
-                                    <input type="file" className='textinputElement' onChange={onhandleImageeOptionB} />
+                                    <input type="file" className='textinputElement' style={{ color: ColorCode.textColor }} onChange={onhandleImageeOptionB} />
                                 </div>
                                 <div className='eachOption'>
                                     <p className='nameoptionElement' style={{ color: ColorCode.textColor }} >C</p>
-                                    <input type="file" className='textinputElement' onChange={onhandleImageeOptionC} />
+                                    <input type="file" className='textinputElement' style={{ color: ColorCode.textColor }} onChange={onhandleImageeOptionC} />
                                 </div>
                                 <div className='eachOption'>
                                     <p className='nameoptionElement' style={{ color: ColorCode.textColor }} >D</p>
-                                    <input type="file" className='textinputElement' onChange={onhandleImageeOptionD} />
+                                    <input type="file" className='textinputElement' style={{ color: ColorCode.textColor }} onChange={onhandleImageeOptionD} />
                                 </div>
                             </div>
                         )}
@@ -598,9 +598,9 @@ function QuestionsCategory() {
                 <div className='importQuestions'>
                     <h1 className='importQsheading' style={{ color: ColorCode.textColor }}>Import Questions</h1>
                     <p className='csvQuestions' style={{ color: ColorCode.textColor }}>CSV Questions file</p>
-                    <input type="file" onChange={handleFileChange} accept="*/*" className='textInputnameImage' />
+                    <input type="file" onChange={handleFileChange} disabled={true} accept="*/*" className='textInputnameImage' />
                     <div className='buttoncontainerQuiz'>
-                        <button type="button" class="text-button text-gray-900 hover:text-white border border-orange-1200 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick} style={{ color: ColorCode.textColor }}>Upload CSV file</button>
+                        <button type="button"  disabled={true} class="text-button text-gray-900 hover:text-white border border-orange-1200 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={onhandleClick} style={{ color: ColorCode.textColor }}>Upload CSV file</button>
                     </div>
                 </div>
                 </div>
