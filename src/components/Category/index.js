@@ -200,7 +200,7 @@ function CategoryCreate() {
         throw new Error('Failed to delete category');
 
       }
-      toast.success(response.detail)
+      toast.success('Category deleted successfully ')
       // console.log('Category deleted successfully');
 
       // window.location.reload(false); // Reloading the page after deletion

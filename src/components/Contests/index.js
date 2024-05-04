@@ -4,6 +4,7 @@ import Navbar from '../Navbar';
 import React, { useState, useEffect } from 'react';
 import './index.css';
 import { ColorCode } from '../ColorCode';
+import toast, { Toaster } from 'react-hot-toast';
 
 function ContestsPage() {
 
@@ -178,7 +179,7 @@ function ContestsPage() {
 
         console.log(objectNew, 'object')
 
-        console.log(selectedProductsget,'selectedObject')
+        console.log(selectedProductsget, 'selectedObject')
         // console.log(endDate)
 
 
@@ -216,7 +217,11 @@ function ContestsPage() {
 
 
             }
-            // window.location.reload(false);
+
+
+            toast.success('Contest Create successfully ')
+
+            window.location.reload(false);
 
             // console.log('Category created successfully');
         } catch (error) {
@@ -241,7 +246,10 @@ function ContestsPage() {
             <div className='navContainer'>
                 <Navbar />
             </div>
-
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false}
+            />
             <div className='right-container-contest'>
                 <h1 className='nameContestpending' >The contest part is currently in progress. please refrain from providing details.</h1>
 
@@ -261,7 +269,7 @@ function ContestsPage() {
 
                         <div className='eachInputElement'>
                             <p className='imageElement' style={{ color: ColorCode.textColor }}>Image</p>
-                            <input type="file" onChange={handelinputImagecontest} accept="*/*" className='textInputnameImagecontest' style={{ borderColor: ColorCode.borderColor }} />
+                            <input type="file" onChange={handelinputImagecontest} accept="*/*" className='textInputnameImagecontest' style={{ borderColor: ColorCode.borderColor,color:ColorCode.textColor }} />
 
                         </div>
                         <div className='datepickerElement eachInputElement'>
@@ -460,9 +468,9 @@ function ContestsPage() {
                 </div> */}
 
                 <div className='elementDescription button-submit'>
-                            <button onClick={onClickSubmitContest} className='create-Contest' style={{ color: ColorCode.borderColor }}>Create Contest</button>
+                    <button onClick={onClickSubmitContest} className='create-Contest' style={{ color: ColorCode.borderColor }}>Create Contest</button>
 
-                        </div>
+                </div>
 
             </div>
 
