@@ -2,96 +2,28 @@
 
 import Navbar from '../Navbar';
 import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import './index.css';
 import { ColorCode } from '../ColorCode';
 
-
-//   const products=[
-//     {
-//          id:108950,name:'Apple Computer is the maker of the iPhone.',idElement:1
-//     },
-//     {
-//         id:108948,name:'Which of these is not a kind of computer?',idElement:2
-//    },
-//    {
-//     id:108947,name:'What does fiber optic cable resemble, in terms of size?',idElement:3
-// },
-// {
-//     id:108946,name:'When was the DVD introduced?',idElement:4
-// },
-// {
-//     id:108945,name:'Who wrote the famous novel "To Kill a Mockingbird"?',idElement:5
-// },
-// {
-//     id:107944,name:'What is the capital of France?',idElement:6
-// },
-// {
-// id:108943,name:'What is the main religion in India?',idElement:7
-// },
-// {
-//     id:118945,name:'Who wrote the famous novel "To Kill a Mockingbird"?',idElement:8
-// },
-// {
-//     id:118944,name:'What is the capital of France?',idElement:9
-// },
-// {
-// id:102943,name:'What is the main religion in India?',idElement:10
-
-// }
-// ,{
-//     id:103944,name:'What is the capital of France?',idElement:11
-// },
-// {
-//   id:108950,name:'Apple Computer is the maker of the iPhone.',idElement:12
-// },
-// {
-//  id:108948,name:'Which of these is not a kind of computer?',idElement:13
-// },
-// {
-// id:108947,name:'What does fiber optic cable resemble, in terms of size?',idElement:14
-// },
-// {
-// id:108946,name:'When was the DVD introduced?',idElement:15
-// },
-// {
-// id:108945,name:'Who wrote the famous novel "To Kill a Mockingbird"?',idElement:16
-// },
-// {
-// id:107944,name:'What is the capital of France?',idElement:17
-// },
-// {
-// id:108943,name:'What is the main religion in India?',idElement:18
-// },
-// {
-// id:118945,name:'Who wrote the famous novel "To Kill a Mockingbird"?',idElement:19
-// },
-// {
-// id:118944,name:'What is the capital of France?',idElement:20
-// },
-// {
-// id:102943,name:'What is the main religion in India?',idElement:21
-
-// }
-// ,{
-// id:103944,name:'What is the capital of France?',idElement:22
-// },
-
-
-
-
-//   ]
-
 function ContestsPage() {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+
+
+    const [selectedProductsget, setSelectedProductsget] = useState('1,2,3')
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10); // Change this value as needed
     const [Categorylist, setCategoryPosts] = useState([])
-    const [nameQuestion,setnameQuestion]=useState('')
+
+
+    const [nameContest, setnameContest] = useState('')
+    const [newstartDate, newsetStartDate] = useState(null);
+    const [ImageContest, setImagecontest] = useState('')
+    const [contestFee, setContestFee] = useState(0)
+    const maxCharacters = 100;
+    const [textareaValueContest, setTextareaValue] = useState('');
+    const [dateTimeEnd, setDateTimeEnd] = useState('');
+    const [dateTimeStart, setDateTimeStart] = useState('');
 
     // Calculate total number of pages
     const totalPages = Math.ceil(Categorylist.length / itemsPerPage);
@@ -103,14 +35,27 @@ function ContestsPage() {
 
 
 
-    const onChagetextcontest=(e)=>{
-        setnameQuestion(e.target.value)
+    const onChagetextcontest = (e) => {
+        setnameContest(e.target.value)
     }
 
     // Function to handle page navigation
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+
+    const handelinputImagecontest = (event) => {
+        const imageData = event.target.files[0];
+        setImagecontest(imageData)
+
+    }
+
+    const onChangeContestFee = (e) => {
+        // contestFee
+        const numbercontestfee = parseInt(e.target.value)
+        setContestFee(numbercontestfee)
+    }
+
 
     useEffect(() => {
         fetch('https://freakapp.pythonanywhere.com/question/')
@@ -151,7 +96,7 @@ function ContestsPage() {
         const availableProducts = [...Categorylist]; // Create a copy of the products array to manipulate
 
         // Ensure we have at least 10 unique questions or until all questions are exhausted
-        while (selectedIds.length < 10 && availableProducts.length > 0) {
+        while (selectedIds.length < 3 && availableProducts.length > 0) {
             // Get a random index within the available products
             const randomIndex = Math.floor(Math.random() * availableProducts.length);
             // Get the product at that random index
@@ -166,23 +111,131 @@ function ContestsPage() {
 
         // Update the selected products state with the unique IDs
         setSelectedProducts(selectedIds);
+
+        // const numbers = selectedProducts
+        const convertedString = selectedIds.join(',');
+        // console.log(convertedString); // Output: '5,7,11'
+        setSelectedProductsget(convertedString)
+
+
+        // newStringFormat()
     };
+
+    // const newStringFormat = () => {
+    //     const numbers = selectedProducts
+    //     const convertedString = selectedIds.join(',');
+    //     // console.log(convertedString); // Output: '5,7,11'
+    //     setSelectedProductsget(convertedString)
+
+    // }
 
     const handleRemoveSelected = () => {
         setSelectedProducts([]);
     };
 
-    const maxCharacters = 100;
-    const [textareaValue, setTextareaValue] = useState('');
 
-    const handleChange = (event) => {
+
+    const handledescriptionChange = (event) => {
         const newValue = event.target.value;
-        if (newValue.length <= maxCharacters) {
-            setTextareaValue(newValue);
-        }
+
+
+        setTextareaValue(newValue);
+
     };
-    
-  console.log(nameQuestion)
+
+
+
+
+
+
+    const handleChangeStartDate = (event) => {
+        setDateTimeStart(event.target.value);
+    };
+
+
+
+
+    const handleChangeEndDate = (event) => {
+        setDateTimeEnd(event.target.value);
+
+    }
+
+
+
+
+    const onClickSubmitContest = async () => {
+
+        const objectNew = {
+            'name': nameContest,
+            'icon': ImageContest,
+            'entry_fee': contestFee,
+            'start_time': dateTimeStart,
+            'end_time': dateTimeEnd,
+            'description': textareaValueContest,
+            'question': selectedProductsget
+        }
+
+
+        console.log(objectNew, 'object')
+
+        console.log(selectedProductsget,'selectedObject')
+        // console.log(endDate)
+
+
+
+        // "status": "ready",
+        // "question_count": 3,
+
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('name', nameContest);
+            formDataToSend.append('icon', ImageContest);
+            formDataToSend.append('entry_fee', contestFee);
+            // startDate
+            formDataToSend.append('start_time', dateTimeStart);
+            // endDate
+            formDataToSend.append('end_time', dateTimeEnd);
+            formDataToSend.append('description', textareaValueContest);
+            formDataToSend.append('question', selectedProductsget);
+            // formDataToSend.append('status', 'ready');
+
+            // formDataToSend.append('question_count', 3);
+
+
+            console.log(formDataToSend)
+
+            const response = await fetch('https://freakapp.pythonanywhere.com/contest/', {
+                method: 'POST',
+                body: formDataToSend
+            });
+
+            console.log(response, 'what error')
+
+            if (!response.ok) {
+                throw new Error('Failed to create entry');
+
+
+            }
+            // window.location.reload(false);
+
+            // console.log('Category created successfully');
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
+
+    console.log(newsetStartDate)
+    console.log(newstartDate)
+    console.log(selectedProductsget)
+
+    // console.log(dateTime, 'datetime')
+
+
+    const numbers = selectedProducts
+    const convertedString = numbers.join(',');
+    console.log(convertedString); // Output: '5,7,11'
     return (
         <div className='containerbg' style={{ backgroundColor: ColorCode.bgColor }}>
             <div className='navContainer'>
@@ -190,7 +243,7 @@ function ContestsPage() {
             </div>
 
             <div className='right-container-contest'>
-            <h1 className='nameContestpending' >The contest part is currently in progress. please refrain from providing details.</h1>
+                <h1 className='nameContestpending' >The contest part is currently in progress. please refrain from providing details.</h1>
 
                 <div className='container-right-Element-contest'>
 
@@ -201,45 +254,49 @@ function ContestsPage() {
                             <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white " style={{ color: ColorCode.textColor }}> Name</label>
                             <input type="text" id="first_name" name="name"
                                 style={{ borderColor: ColorCode.borderColor }}
+
                                 className="textInputnameImagecontest" placeholder="Name" onChange={onChagetextcontest} required />
                         </div>
+                        {/* <DatePicker selected={startDate}  dateFormat="yyyy/MM/dd" onChange={(date) => newsetStartDate(date)} /> */}
 
                         <div className='eachInputElement'>
                             <p className='imageElement' style={{ color: ColorCode.textColor }}>Image</p>
-                            <input type="file" onChange={''} accept="*/*" className='textInputnameImagecontest' style={{ borderColor: ColorCode.borderColor }} />
+                            <input type="file" onChange={handelinputImagecontest} accept="*/*" className='textInputnameImagecontest' style={{ borderColor: ColorCode.borderColor }} />
 
                         </div>
                         <div className='datepickerElement eachInputElement'>
                             <div>
                                 <p className='imageElement' style={{ color: ColorCode.textColor }}>Start Date</p>
-                                <DatePicker
-                                    className='datepickerstart'
-                                    selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
-                                    showTimeSelect
-                                    timeFormat="HH:mm"
-                                    timeIntervals={60}
-                                    timeCaption="time"
-                                    dateFormat="MMMM d, yyyy h:mm aa"
-                                    withPortal
+
+                                <input
+                                    type="datetime-local"
+                                    id="datetime"
+                                    name="datetime"
+                                    value={dateTimeStart}
+                                    onChange={handleChangeStartDate}
+                                    className='date-time'
                                 />
+
+
                             </div>
                             <div>
                                 <p className='imageElement' style={{ color: ColorCode.textColor }}>End Date</p>
-                                <DatePicker
-                                    className='datepickerstart'
-                                    selected={endDate}
-                                    onChange={(date) => setEndDate(date)}
-                                    showTimeSelect
-                                    timeFormat="HH:mm"
-                                    timeIntervals={60}
-                                    timeCaption="time"
-                                    dateFormat="MMMM d, yyyy h:mm aa"
-                                    withPortal
+
+                                <input
+                                    type="datetime-local"
+                                    id="datetime"
+                                    name="datetime"
+                                    value={dateTimeEnd}
+                                    onChange={handleChangeEndDate}
+                                    className='date-time'
+
                                 />
                             </div>
-                        </div>
 
+
+
+
+                        </div>
 
                         <div className='eachInputElement'>
                             <p className='imageElement' style={{ color: ColorCode.textColor }}>Entry Fee</p>
@@ -248,7 +305,7 @@ function ContestsPage() {
                             <input type="number" id="first_name" name="name"
                                 defaultValue={0}
                                 style={{ borderColor: ColorCode.borderColor }}
-                                className="textInputnameImagecontest" placeholder="These amount will be deducted from users wallet" required />
+                                className="textInputnameImagecontest" onChange={onChangeContestFee} placeholder="These amount will be deducted from users wallet" required />
                         </div>
                         <div className='elementDescription'>
                             <p style={{ color: ColorCode.textColor }}>Description</p>
@@ -258,12 +315,16 @@ function ContestsPage() {
                                 id="textarea"
                                 rows={4}
                                 cols={50}
-                                value={textareaValue}
-                                onChange={handleChange}
+                                value={textareaValueContest}
+                                onChange={handledescriptionChange}
                                 maxLength={maxCharacters}
                                 style={{ borderColor: ColorCode.borderColor }}
                             />
                         </div>
+                        {/* <div className='elementDescription'>
+                            <button onClick={onClickSubmitContest} className='create-Contest' style={{ color: ColorCode.borderColor }}>Create Contest</button>
+
+                        </div> */}
                     </div>
 
                 </div>
@@ -318,6 +379,8 @@ function ContestsPage() {
                                 ))}
                             </tbody>
                         </table>
+
+
 
 
                         {totalPages > 1 && (
@@ -384,7 +447,23 @@ function ContestsPage() {
                         </ul>
                     </div>
 
+
+
+
                 </div>
+
+
+
+                {/* <div>
+                    <h1 style={{ color: ColorCode.borderColor }}>jhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh i</h1>
+
+                </div> */}
+
+                <div className='elementDescription button-submit'>
+                            <button onClick={onClickSubmitContest} className='create-Contest' style={{ color: ColorCode.borderColor }}>Create Contest</button>
+
+                        </div>
+
             </div>
 
 

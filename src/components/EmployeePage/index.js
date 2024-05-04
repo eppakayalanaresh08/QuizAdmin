@@ -4,6 +4,9 @@ import Navbar from '../Navbar'
 import { ColorCode } from '../ColorCode'
 import './index.css'
 
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 // const Emopleelist = [
 //   {
@@ -167,10 +170,13 @@ function EmployeePage() {
       console.log(response)
 
       if (!response.ok) {
-        throw new Error('Failed to delete category');
+        toast.error('Failed to delete Employee')
+
+        throw new Error('Failed to delete Employee');
       }
 
       console.log('Category deleted successfully');
+      toast.success('Employee Delete successfully')
 
       window.location.reload(false); // Reloading the page after deletion
     } catch (error) {
@@ -191,10 +197,13 @@ function EmployeePage() {
       console.log(response)
 
       if (!response.ok) {
-        throw new Error('Failed to update category');
-      }
+        toast.error('Failed Update Employee')
 
-      console.log('Category updated successfully');
+        throw new Error('Failed Update Employee');
+      }
+      toast.success('Employee updated successfully')
+
+      console.log('Employee updated successfully');
 
       window.location.reload(false); // Reloading the page after update
     } catch (error) {
@@ -226,7 +235,9 @@ function EmployeePage() {
 
 
 
-  const onClickSubmitnameRole = async () => {
+  const onClickSubmitnameRole = async(e) => {
+    e.preventDefault()
+
     const nameObject = {
       name: rolename
     }
@@ -245,10 +256,13 @@ function EmployeePage() {
       console.log(response)
 
       if (!response.ok) {
-        throw new Error('Failed to update category');
-      }
+        toast.error('')
 
-      console.log('Category updated successfully');
+        throw new Error('Failed to Add role ');
+      }
+      toast.success('successfully post role')
+
+      // console.log('Category updated successfully');
       closePopup();
       window.location.reload(false); // Reloading the page after update
     } catch (error) {
@@ -264,10 +278,14 @@ function EmployeePage() {
       console.log(response)
 
       if (!response.ok) {
+        toast.error('Failed to delete role')
+
         throw new Error('Failed to delete role');
+
       }
 
-      console.log('role deleted successfully');
+      // console.log('role deleted successfully');
+      toast.success('deleted role successfully')
 
       window.location.reload(false); // Reloading the page after deletion
     } catch (error) {
@@ -289,10 +307,11 @@ function EmployeePage() {
       console.log(response)
 
       if (!response.ok) {
-        throw new Error('Failed to update category');
+        toast.error('Failed to update role')
+        throw new Error('Failed to update role');
       }
+      toast.success('role updated successfully')
 
-      console.log('Category updated successfully');
       closePopup();
       window.location.reload(false); // Reloading the page after update
     } catch (error) {
@@ -333,7 +352,8 @@ function EmployeePage() {
     setChangeUpdateEmailEmployee(e.target.value)
   }
 
-  const handleSubmitEmpolyee = async () => {
+  const handleSubmitEmpolyee = async (e) => {
+    e.preventDefault()
     const formEmployeData = {
       name: NameEmpolyee,
       email: getEmailName,
@@ -379,6 +399,10 @@ function EmployeePage() {
       <div className='navbar-container'>
         <Navbar />
       </div>
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+      />
       <div className='empolyee-list-add-container'>
         <div className='main-container'>
           <button className='button-card-add' onClick={openRoleClickEmpolyee}>
@@ -506,14 +530,14 @@ function EmployeePage() {
 
         {isPopupOpenEmployeeadd && (
           <div className="popup">
-            <div className="popup-content">
+            <form  className="popup-content" onSubmit={handleSubmitEmpolyee}>
               <div className='headingwalletcontainer'>
                 <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Add Empolyee Details</h1>
               </div>
               <div className='inputContainerbg'>
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }}>Name Empolyee</h2>
-                  <input type="text" className='inputTextElement' onChange={ChangeNameEmpolyee} placeholder='Enter the Name' />
+                  <input type="text" className='inputTextElement' onChange={ChangeNameEmpolyee} required placeholder='Enter the Name' />
                 </div>
 
                 {/* <div className='inputContainer'>
@@ -523,12 +547,12 @@ function EmployeePage() {
                 <div className='inputContainer'>
                   <h2 className='addheading ' style={{ color: ColorCode.textColor }}>Role Empolyee</h2>
 
-                  <select className='selectRoleItem inputTextElement' onChange={handleSelectRole}>
-                    <option>Select Role</option>
+                  <select className='selectRoleItem inputTextElement' onChange={handleSelectRole} required>
+                    <option >Select Role</option>
 
                     {
                       rolegettheData.map((each) => (
-                        <option value={each.id}>{each.name}</option>
+                        <option value={each.id} >{each.name}</option>
                        
 
 
@@ -539,22 +563,22 @@ function EmployeePage() {
 
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }}>Email</h2>
-                  <input type="text" className='inputTextElement' onChange={inputChangeEmail} placeholder='Enter the Email' />
+                  <input type="text" className='inputTextElement' onChange={inputChangeEmail} required placeholder='Enter the Email' />
                 </div>
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }}>Date of Birth</h2>
-                  <input type="text" className='inputTextElement' onChange={inputChangeDateOfBirth} placeholder='YYYY-MM-DD' />
+                  <input type="text" className='inputTextElement' onChange={inputChangeDateOfBirth} required placeholder='YYYY-MM-DD' />
                 </div>
                 <div className='inputContainer'>
                   <h2 className='addheading' style={{ color: ColorCode.textColor }} >Date Of Joining</h2>
-                  <input type="text" className='inputTextElement' onChange={inputChangeJoinOfDate} placeholder='YYYY-MM-DD' />
+                  <input type="text" className='inputTextElement' onChange={inputChangeJoinOfDate} required placeholder='YYYY-MM-DD' />
                 </div>
               </div>
               <div className='containerButton'>
-                <button className='submitbutton' onClick={handleSubmitEmpolyee}>Submit</button>
+                <button className='submitbutton' type="submit">Submit</button>
                 <button onClick={closePopup} className='closeButton'>Close</button>
               </div>
-            </div>
+            </form>
           </div>
         )}
 
@@ -618,7 +642,7 @@ function EmployeePage() {
 
         {openroleEmpolyee && (
           <div className="popup ">
-            <div className="popup-content">
+            <form className="popup-content" onSubmit={onClickSubmitnameRole}>
               <div className='headingwalletcontainer'>
                 <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Employee Role</h1>
               </div>
@@ -627,12 +651,12 @@ function EmployeePage() {
 
                 <div className='inputContainer'>
                   <h2 className='addheadingrole' style={{ color: ColorCode.textColor }}>Role Name</h2>
-                  <input type="text" className='inputText' onChange={NameChangeRoleEmpolyee} />
+                  <input type="text" className='inputText' onChange={NameChangeRoleEmpolyee} placeholder='Enter the Role' required/>
                 </div>
 
               </div>
               <div className='containerButton'>
-                <button className='submitbutton' onClick={onClickSubmitnameRole}>Submit</button>
+                <button type="submit" className='submitbutton' >Submit</button>
                 <button onClick={closePopup} className='closeButton'>Close</button>
               </div>
 
@@ -712,7 +736,7 @@ function EmployeePage() {
 
 
 
-            </div>
+            </form>
           </div>
         )}
 

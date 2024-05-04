@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+
+import toast, { Toaster } from 'react-hot-toast';
 import Navbar from '../Navbar';
 import './index.css';
 
@@ -22,7 +24,7 @@ function CategoryCreate() {
 
   const [isOpenPopupEditCategory, setisOpenPopupEditCategory] = useState(false)
 
-const [updateEditcategorydata,setupdateDataEditdata]=useState({})
+  const [updateEditcategorydata, setupdateDataEditdata] = useState({})
 
 
   const PopupEditCategoryhandle = (eachItem) => {
@@ -38,11 +40,11 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
 
   const closePopup = () => {
     setisOpenPopupEditCategory(false)
-  
+
 
   };
 
-///get method 
+  ///get method 
 
   useEffect(() => {
     fetch('https://freakapp.pythonanywhere.com/category/')
@@ -58,7 +60,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
 
 
 
-  
+
 
   const handleFileChange = (event) => {
     const imageData = event.target.files[0];
@@ -87,7 +89,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
     }));
   };
 
-  const handleRadioChange=(e)=>{
+  const handleRadioChange = (e) => {
     const value = e.target.value === 'true';
     setFormData((prevState) => ({
       ...prevState,
@@ -112,13 +114,23 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
         body: formDataToSend
       });
 
-      console.log(response)
+
+
+      // const data = await response.json()
+
+        // console.log(response)
+      // console.log(data,'response')
 
       if (!response.ok) {
+        toast.error("Please Fill All Correct Way.")
         throw new Error('Failed to create entry');
+
+
       }
-      window.location.reload(false);
-      console.log('Category created successfully');
+      // window.location.reload(false);
+      toast.success('Category created successfully ')
+
+      // console.log('Category created successfully');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -135,15 +147,21 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
         body: JSON.stringify({ is_active: updateEditcategorydata.is_active }) // Only send the updated field
       });
 
-      console.log(response)
+      console.log(response.detail)
 
       if (!response.ok) {
+        toast.error('Failed to update category ')
+
         throw new Error('Failed to update category');
+
       }
+      toast.success(response.detail)
 
       console.log('Category updated successfully');
       closePopup();
-      window.location.reload(false); // Reloading the page after update
+      window.location.reload(false);
+
+      // Reloading the page after update
     } catch (error) {
       console.error('Error:', error);
     }
@@ -173,24 +191,37 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
       });
       console.log(response)
 
+
+
+
       if (!response.ok) {
+        toast.error('Failed to delete category')
+
         throw new Error('Failed to delete category');
+
       }
+      toast.success(response.detail)
+      // console.log('Category deleted successfully');
 
-      console.log('Category deleted successfully');
-
-      window.location.reload(false); // Reloading the page after deletion
+      // window.location.reload(false); // Reloading the page after deletion
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
   return (
+
     <div className='container-bg' style={{ backgroundColor: ColorCode.bgColor }}>
+
       <div className='nav-container'>
         <Navbar />
       </div>
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+      />
       <div className='conatinerbg-inputs'>
+
         <form onSubmit={handleSubmit}>
           <div class="inputext">
             <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" style={{ color: ColorCode.textColor }}>Category Name</label>
@@ -223,14 +254,14 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                 value="false"
                 checked={!formData.is_active}
                 onChange={handleRadioChange}
-                className="radioElement" 
+                className="radioElement"
                 required
               />
               <label htmlFor="inactive" className='inputelement' style={{ color: ColorCode.textColor }}>Inactive</label>
             </div>
           </div>
           <p className='categoryName' style={{ color: ColorCode.textColor }}>Category Icon</p>
-          <input type="file" onChange={handleFileChange} required accept="image/*" className='imageElementInput' style={{ borderColor: ColorCode.borderColor }} />
+          <input type="file" onChange={handleFileChange} required accept="image/*" className='imageElementInput' style={{ borderColor: ColorCode.borderColor, color: ColorCode.textColor }} />
           {formData.icon && (
             <img
               src={image}
@@ -264,9 +295,9 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                       <td class="px-6 py-4" style={{ color: colorCode }}><img src={eachItem.icon} className='iconElmenteach' alt="n" /></td>
                       <td class="px-6 py-4" style={{ color: colorCode }}>
                         {/* <div className='Deletebg' >  */}
-                         
-                          <button className='deletebutton' onClick={() => OnDeletebutton(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
-                          <button className='deletebutton' onClick={() => PopupEditCategoryhandle(eachItem)}><i class="bi bi-pencil-square"></i></button>
+
+                        <button className='deletebutton' onClick={() => OnDeletebutton(eachItem.id)}> <i class="bi bi-trash3 delteicon" ></i></button>
+                        <button className='deletebutton' onClick={() => PopupEditCategoryhandle(eachItem)}><i class="bi bi-pencil-square"></i></button>
 
                         {/* </div> */}
                       </td>
@@ -283,7 +314,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
                 className="px-3 py-1 mr-2 bg-black-200 text-gray-700 rounded-md hover:bg-gray-300 buttonBorder"
-                style={{color:ColorCode.borderColor}}
+                style={{ color: ColorCode.borderColor }}
               >
                 Previous
               </button>
@@ -301,7 +332,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                     key={pageNumber}
                     onClick={() => handlePageChange(pageNumber)}
                     className={`px-3 py-1 mr-2 rounded-md ${currentPage === pageNumber ? 'bg-gray-500 text-white' : 'bg-black-200 text-gray-700 hover:bg-gray-300 buttonBorder'}`}
-                    style={{color:ColorCode.borderColor}}
+                    style={{ color: ColorCode.borderColor }}
 
                   >
                     {pageNumber}
@@ -312,7 +343,7 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 className="px-3 py-1 ml-2 bg-black-200 text-gray-700 rounded-md hover:bg-gray-300 buttonBorder"
-                style={{color:ColorCode.borderColor}}
+                style={{ color: ColorCode.borderColor }}
 
               >
                 Next
@@ -322,50 +353,50 @@ const [updateEditcategorydata,setupdateDataEditdata]=useState({})
         </div>
 
         {isOpenPopupEditCategory && (
-        <div className="popup">
-          <div className="popup-content">
-            <div className='headingwalletcontainer'>
-              <h1 className='headingnameWallet' style={{color:ColorCode.borderColor}}>Status Update</h1>
-            </div>
-            <div className="container-updateStatus">
+          <div className="popup">
+            <div className="popup-content">
+              <div className='headingwalletcontainer'>
+                <h1 className='headingnameWallet' style={{ color: ColorCode.borderColor }}>Status Update</h1>
+              </div>
+              <div className="container-updateStatus">
 
-              <div className='activecontainer buttonStatus'>
-                <input
-                  type="radio"
-                  id="activeEdit"
-                  name="status"
-                  value="true"
-                  checked={updateEditcategorydata.is_active}
-                  onChange={handleRadioEditData}
-                  className="radioElement"
+                <div className='activecontainer buttonStatus'>
+                  <input
+                    type="radio"
+                    id="activeEdit"
+                    name="status"
+                    value="true"
+                    checked={updateEditcategorydata.is_active}
+                    onChange={handleRadioEditData}
+                    className="radioElement"
 
-                />
-                <label htmlFor="activeEdit" style={{color:ColorCode.textColor}} className='inputelement'>Active</label>
+                  />
+                  <label htmlFor="activeEdit" style={{ color: ColorCode.textColor }} className='inputelement'>Active</label>
+                </div>
+
+                <div className='leftRadioButton buttonStatus'>
+
+                  <input
+                    type="radio"
+                    id="inactiveEdit"
+                    name="status"
+                    value="false"
+                    checked={!updateEditcategorydata.is_active}
+                    onChange={handleRadioEditData}
+                    className="radioElement"
+
+                  />
+                  <label htmlFor="inactiveEdit" style={{ color: ColorCode.textColor }} className='inputelement' >Inactive</label>
+                </div>
               </div>
 
-              <div className='leftRadioButton buttonStatus'>
-
-                <input
-                  type="radio"
-                  id="inactiveEdit"
-                  name="status"
-                  value="false"
-                  checked={!updateEditcategorydata.is_active}
-                  onChange={handleRadioEditData}
-                  className="radioElement"
-
-                />
-                <label htmlFor="inactiveEdit" style={{color:ColorCode.textColor}} className='inputelement' >Inactive</label>
+              <div className='containerButton'>
+                <button className='submitbutton' onClick={() => handlePopupCategoryEditSubmit(updateEditcategorydata)}>Submit</button>
+                <button onClick={closePopup} className='closeButton'>Close</button>
               </div>
-            </div>
-
-            <div className='containerButton'>
-              <button className='submitbutton' onClick={()=>handlePopupCategoryEditSubmit(updateEditcategorydata)}>Submit</button>
-              <button onClick={closePopup} className='closeButton'>Close</button>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );

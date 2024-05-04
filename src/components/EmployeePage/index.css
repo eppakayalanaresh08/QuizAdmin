@@ -157,3 +157,8 @@
 .buttonBorder{
     border:1px solid #fff;
 }
+
+.inputText{
+    font-size: 20px;
+    padding:5px;
+}
